@@ -54,46 +54,39 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("DOMContentLoaded", function () {
     const contactForm = document.getElementById("contactForm");
     const result = document.getElementById("result");
-  
+
     if (contactForm && result) {
       emailjs.init("fJ4bUNEbuwI76kNto");
-  
-      contactForm.addEventListener("submit", function (e) {
-        e.preventDefault();
-  
-        const recaptchaResponse = grecaptcha.getResponse();
-        if (!recaptchaResponse) {
-          result.textContent = "⚠️ Please verify that you're not a robot.";
-          result.style.color = "orange";
-          return;
-        }
-  
-        emailjs.sendForm("service_ejb45tm", "template_gpy5l1d", this)
+
+      contactForm.addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent reload
+
+        emailjs.sendForm("service_ejb45tm", "template_gpy5l1d", contactForm)
           .then(() => {
             result.textContent = "✅ Message sent successfully!";
             result.style.color = "green";
             contactForm.reset();
-            grecaptcha.reset();
-  
+
             setTimeout(() => {
               result.textContent = "If you would like to get in touch with me, you can reach me via email or socials";
               result.style.color = "";
             }, 5000);
           })
-          .catch(error => {
+          .catch((error) => {
             result.textContent = "❌ Something went wrong. Please try again.";
             result.style.color = "red";
-  
+
             setTimeout(() => {
               result.textContent = "If you would like to get in touch with me, you can reach me via email or socials";
               result.style.color = "";
             }, 5000);
-  
-            console.error("❌ FAILED:", error);
+
+            console.error("❌ EmailJS Error:", error);
           });
       });
     }
   });
+  
 
   // === DARK/LIGHT TOGGLE ===
   const toggleBtn = document.getElementById("themeToggle");
