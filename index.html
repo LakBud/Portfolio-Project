@@ -31,8 +31,8 @@
     <h2>About Me</h2>
 
     <p>
-    An up-coming Web Developer. 
-    My nationality is Norwegian while I am ethnically Pakistani.
+    An up-coming 17 year old Web Developer. 
+    Norwegian/Pakistani.
     Web Developing is a passion of mine which will probably be my career.
     Currently, I can do HTML, CSS and Vanilla JS in an intermediate level.
     </p>
@@ -140,13 +140,17 @@
     
     <div class="contact-container">
 
-    <form id="contactForm">
-      <input type="text" name="user_name" placeholder="Your Name" required><br><br>
-      <input type="email" name="user_email" placeholder="Your Email" required><br><br>
-      <textarea name="user_message" placeholder="Your Message" required></textarea><br><br>
-      <button type="submit">Send</button>
-    </form>
-    
+      <form id="contactForm">
+        <input type="text" name="user_name" placeholder="Your Name" required><br><br>
+        <input type="email" name="user_email" placeholder="Your Email" required><br><br>
+        <textarea name="user_message" placeholder="Your Message" required></textarea><br><br>
+      
+        <!-- Google reCAPTCHA widget -->
+        <div class="g-recaptcha" data-sitekey="6LdSpn0rAAAAAEjYnOcPuHbXejTYcVnmDAgv3DPM"></div><br>
+      
+        <button type="submit">Send</button>
+      </form>
+      
 
       <div class="socialBox"> 
       <p id="socials">
@@ -208,7 +212,7 @@
 
 <!-- Scripts-->
 
-
+<script src="https://www.google.com/recaptcha/api.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 <script>
   Sortable.create(document.querySelector(".goals ol"), {
