@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BuddoPortfolio</title>
+    <link rel="stylesheet" href = "style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<header class="title">
+  <button id="themeToggle" class="theme-icon">
+    <img id="themeIcon" src="ASSETS/moon.png" alt="Toggle Theme" width="32" />
+  </button>
+<div>
+<h1>Buddo</h1>
+</div>
+</header>
+
+<main>
+
+
+<section class="about">
+    
+    <h2>About Me</h2>
+
+    <p>
+    An up-coming Web Developer. 
+    My nationality is Norwegian while I am ethnically Pakistani.
+    Web Developing is a passion of mine which will probably be my career.
+    Currently, I can do HTML, CSS and Vanilla JS in an intermediate level.
+    </p>
+
+</section>
+
+
+
+<div class="interests-slider-container">
+  
+    <section class="interests">
+      <h2>Interests</h2>
+      <ul>
+        <div class="interest-item">
+          <p>💻 Web-Developing</p>
+          <div class="progress-bar"><div class="progress" style="width: 85%"></div></div>
+        </div>
+        <div class="interest-item">
+          <p>♟️ Chess</p>
+          <div class="progress-bar"><div class="progress" style="width: 70%"></div></div>
+        </div>
+        <div class="interest-item">
+          <p>🐉 Dragon Ball</p>
+          <div class="progress-bar"><div class="progress" style="width: 100%"></div></div>
+        </div>
+        <div class="interest-item">
+          <p>⚽ Fotball (PSG)</p>
+          <div class="progress-bar"><div class="progress" style="width: 95%"></div></div>
+        </div>
+        <div class="interest-item">
+          <p> 🎤 TV Shows</p>
+          <div class="progress-bar"><div class="progress" style="width: 60%"></div></div>
+        </div>
+        <div class="interest-item">
+          <p> 🕹️ Games</p>
+          <div class="progress-bar"><div class="progress" style="width: 50%"></div></div>
+        </div>
+      </ul> 
+    </section>
+
+
+
+    <div class="slider">
+        <div class="slides">
+          <img class="slide" src="ASSETS/chess.webp" alt="chess">
+          <img class="slide" src="ASSETS/Fotball.webp" alt="Fotball">
+          <img class="slide" src="ASSETS/JS.webp" alt="JS">
+        </div>
+        <button class="prev" onclick="prevSlide()">&#60;</button>
+        <button class="next" onclick="nextSlide()">&#62;</button>
+      </div>
+
+</div>
+
+
+<div class="goals-project-container">
+
+<section class="goals">
+    <h2>Goals</h2>
+  
+    <p>My goal is being capable of 
+    Advanced Fullstack Web Development</p>
+
+    <p>This includes:</p>
+  
+    <ol id="goals-list">    
+      <li>Typescript</li>
+      <li>React (Drag me!)</li>
+      <li>Node.JS + Express.JS</li>
+      <li>Python</li>
+      <li>Maybe Tailwind CSS?</li>
+      <li>MySQL/MongoDB</li>
+    </ol>
+  
+    <button onclick="shuffleGoals()">Wanna Shuffle?</button>
+  </section>
+
+  <section class="projectIntro">
+
+    <h2>Projects</h2>
+
+    <p>My projects can be seen through this button: </p>
+
+    <br>
+
+    <a href="projects.html">
+        <button>Projects</button>
+      </a>
+
+  </section>
+
+
+</div>
+
+
+
+<section class="contact">
+    <h2>Contact</h2>
+
+    <p id="result">
+    If you would like to get in touch with me, 
+    you can reach me via email or socials
+  </p>  
+    <br>
+    
+    <div class="contact-container">
+
+    <form id="contactForm">
+      <input type="text" name="user_name" placeholder="Your Name" required><br><br>
+      <input type="email" name="user_email" placeholder="Your Email" required><br><br>
+      <textarea name="user_message" placeholder="Your Message" required></textarea><br><br>
+      <button type="submit">Send</button>
+    </form>
+    
+
+      <div class="socialBox"> 
+      <p id="socials">
+        My Socials:
+      
+        <a href="https://www.youtube.com/@Budosso" title ="YouTube">YouTube</a>
+        <a href="https://x.com/Lakhmir73392332" title ="X">Twitter</a>
+
+      </p>
+   
+    </div>
+    </div>
+
+</section>
+
+</main>
+
+
+<footer>
+<p>Buddo - Copyright © 2025</p>
+
+<div class="fixed-social-icons">
+   <!-- Official Youtube logo SVG -->
+  <a href="https://www.youtube.com/@Budosso" target="_blank" title="YouTube" class="youtube-icon">
+      <svg viewBox="0 0 24 24"><path d="M23.498 6.186a2.997 2.997 0 0 0-2.112-2.12C19.228 3.5 12 3.5 12 3.5s-7.228 0-9.386.566A2.997 2.997 0 0 0 .502 6.186C0 8.35 0 12 0 12s0 3.65.502 5.814a2.997 2.997 0 0 0 2.112 2.12C4.772 20.5 12 20.5 12 20.5s7.228 0 9.386-.566a2.997 2.997 0 0 0 2.112-2.12C24 15.65 24 12 24 12s0-3.65-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+  </a>
+  <a href="https://x.com/Lakhmir73392332" target="_blank" title="X" class="x-icon">
+      <!-- Official X (Twitter) logo SVG -->
+      <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <g>
+              <path d="M87.6,18.5h19.2L72.1,54.5l37.9,47H81.3L56.9,77.2L29.7,101.5H10.4l36.1-39.2L10,18.5h39.3l21.1,23.7L87.6,18.5z
+                  M82.1,92.2h10.6L38.3,29.2H27.1L82.1,92.2z"/>
+          </g>
+      </svg>
+  </a>
+</div>
+</footer>
+
+
+<!-- Scripts-->
+
+
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+<script>
+  Sortable.create(document.querySelector(".goals ol"), {
+    animation: 150
+  });
+</script>
+
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init({
+        publicKey: "fJ4bUNEbuwI76kNto",
+      });
+   })();
+</script>
+
+<script src="scripts.js"></script>
+
+
+</body>
+
+
+</html>
