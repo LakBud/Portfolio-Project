@@ -223,54 +223,108 @@ a button {
 
 /* 7. Footer */
 footer {
-  text-align: center;
-  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 10px 20px;
   background: #8B5E3C;
   color: white;
-  margin-top: 40px;
   font-size: 0.7rem;
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  padding: 10px 0;
   z-index: 1000;
   font-family: 'Press Start 2P', cursive;
+  box-sizing: border-box;
+  text-align: center;
+  gap: 10px;
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 10px;
 }
 
 .fixed-social-icons {
-  position: fixed;
-  bottom: 0;
-  left: 10%;
-  transform: translateX(-50%);
   display: flex;
-  flex-direction: row;
-  gap: 15px;
+  gap: 20px;
+  flex-wrap: wrap;
 }
+
+.footer-text {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.footer-spacer {
+  width: 90px; 
+}
+
+
+@media (max-width: 700px) {
+  .footer-inner {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .footer-text,
+  .footer-spacer {
+    justify-content: center;
+  }
+
+  .footer-spacer {
+    display: none;
+  }
+}
+
+
+
 .fixed-social-icons a {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50px;
+  width: 38px;
   height: 38px;
   transition: background 0.2s;
   text-decoration: none;
 }
+
+.fixed-social-icons svg {
+  width: 30px;
+  height: 30px;
+}
+
 .fixed-social-icons a:hover {
-  background: #ffffff;
+  background-color: #ffffff;
+  
+  
+}
+
+.fixed-social-icons a:hover svg {
+  transform: scale(1.2);
 }
 
 .fixed-social-icons .youtube-icon svg {
   fill: #FF0000;
 }
-.fixed-social-icons .x-icon svg {
+
+.fixed-social-icons .x-icon svg,
+.fixed-social-icons .github-icon svg {
   fill: #000;
 }
-.fixed-social-icons svg {
-  width: 30px;
-  height: 30px;
-  flex-direction: column;
-}
+
+
 
 /* 8. Responsive Tweak */
 @media (max-width: 768px) {
