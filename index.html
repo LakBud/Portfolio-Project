@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BuddoPortfolio</title>
-    <link rel="stylesheet" href = "style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <link rel="icon" href="ASSETS/favicon.PNG" type="ASSETS/png">
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://www.google.com https://www.gstatic.com; object-src 'none';">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BuddoPortfolio</title>
+  <link rel="stylesheet" href = "style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="icon" href="ASSETS/favicon.PNG" type="ASSETS/png">
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com https://cdn.jsdelivr.net https://cdn.emailjs.com">
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
@@ -148,7 +149,6 @@
       
         <!-- Google reCAPTCHA widget -->
         <div class="g-recaptcha" data-sitekey="6Lctqn0rAAAAAMG_EM6MPc_Mdtd8F0Hpjry6m-ge"></div><br>
-
       
         <button type="submit">Send</button>
       </form>
@@ -213,17 +213,6 @@
 
 
 <!-- Scripts-->
-
-<script type="text/javascript">
-  var onloadCallback = function() {
-    alert("grecaptcha is ready!");
-  };
-</script>
-
-<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
-    async defer>
-</script>
-
 
 
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
