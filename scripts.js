@@ -115,7 +115,7 @@ const projects = [
     "description": "The one you are looking at!",
     "image": "ASSETS/placeholder.png",
     "skills": ["HTML", "CSS", "JavaScript", "JSON"],
-    "link": "https://lakbud.github.io/Portfolio-Project/index.html"
+    "link": "https://lakbud.github.io/Portfolio-Project"
   }
 ];
 
