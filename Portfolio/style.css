@@ -22,18 +22,32 @@ main {
 }
 
 /* 2. Header */
-header {
-  background: linear-gradient(135deg, #BFA27A, #8B5E3C); /* light to dark brown */
+header.title {
+  background: linear-gradient(135deg, #BFA27A, #8B5E3C);
   color: white;
-  padding: 30px 0;
-  text-align: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;  /* Align content to the left */
+  gap: 20px;
+  image-rendering: pixelated;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+
+header.title .logo {
+  height: 100px;
+  width: auto;
+  border: 5px solid #a6690e;
   image-rendering: pixelated;
 }
 
 header.title h1 {
   font-size: 1.5rem;
   letter-spacing: 1px;
+  margin: 0;
+  color: white;
 }
 
 /* 3. Section Base Styling */
