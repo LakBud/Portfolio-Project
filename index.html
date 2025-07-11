@@ -142,20 +142,20 @@
   <div class="contact-container">
 
 <!-- Form -->
-<form id="contactForm">
+<form id="contactForm" action="https://formspree.io/f/xjkrnlay" method="POST">
   <p>Email:</p>
 
   <!-- Name -->
-  <input type="text" name="from_name" placeholder="Your Name" required><br><br>
+  <input type="text" name="name" placeholder="Your Name" required><br><br>
 
   <!-- Email -->
-  <input type="email" name="from_email" placeholder="Your Email" required><br><br>
+  <input type="email" name="email" placeholder="Your Email" required><br><br>
 
   <!-- Message -->
   <textarea name="message" placeholder="Your Message" required></textarea><br><br>
 
+  <!-- Spam protection (honeypot) -->
   <input type="text" name="_honey" style="display:none">
-
 
   <button type="submit">Send</button>
 </form>
