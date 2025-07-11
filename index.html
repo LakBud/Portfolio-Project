@@ -143,14 +143,16 @@
 
 
 <form id="contactForm" action="https://formspree.io/f/xjkrnlay" method="POST">
-  <p>Email:</p><br>
+  <p>Email (reCAPTCHA):</p><br>
 
   <input type="text" name="name" class="textbox" placeholder="Your Name" required><br><br>
   <input type="email" name="email" class="textbox" placeholder="Your Email" required><br><br>
   <textarea name="message" class="textarea-box" placeholder="Your Message" required></textarea><br><br>
   <input type="text" name="_honey" style="display:none">
 
-  <button type="submit">Send</button>
+  
+
+  <button type="submit" id="sendEmail">Send</button>
 </form>
 
 
@@ -165,8 +167,12 @@
   </div>
 </section>
 
+<p style="text-align: center; font-size: 1rem; padding: 10px">
+  For email: If reCAPTCHA has been completed, I'll get back to you as soon as possible :)<br><br><br>
+</p>
 
 </main>
+
 
 
 <footer>

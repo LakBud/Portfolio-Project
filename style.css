@@ -175,6 +175,7 @@ button {
   cursor: pointer;
   transition: background 0.3s ease;
   font-family: 'Press Start 2P', cursive;
+  
 }
 
 button:hover {
@@ -205,6 +206,10 @@ a button {
   text-align: left;
 }
 
+#sendEmail {
+  display: block;
+  margin-left: 95px;
+}
 
 
 .contact-container {
@@ -212,20 +217,20 @@ a button {
   flex-wrap: wrap;
   gap: 60px;
   align-items: flex-start;
+  justify-content: center;
 }
 
 
 
 .socialBox {
   text-align: center;
-  margin-top: 2px;
 }
 
 
 
 .textarea-box {
   width: 100%;
-  max-width: 600px;
+  max-width: 300px;
   height: 300px;
   padding: 14px 16px;
   border: 2px solid #ccc;
@@ -246,7 +251,7 @@ a button {
 
 .textbox {
   width: 100%;
-  max-width: 600px;
+  max-width: 300px;
   height: 10px;
   padding: 14px 16px;
   border: 2px solid #ccc;
