@@ -51,42 +51,38 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // === EMAILJS CONTACT FORM ===
-  window.addEventListener("DOMContentLoaded", function () {
-    const contactForm = document.getElementById("contactForm");
-    const result = document.getElementById("result");
-  
-    if (contactForm && result) {
-      emailjs.init("fJ4bUNEbuwI76kNto");
-  
-      contactForm.addEventListener("submit", function (event) {
-        event.preventDefault(); // Prevent reload
-  
-        emailjs.sendForm("service_ejb45tm", "template_gpy5l1d", contactForm)
-          .then(() => {
-            result.textContent = "✅ Message sent successfully!";
-            result.style.color = "green";
-            contactForm.reset();
-  
-            setTimeout(() => {
-              result.textContent = "If you would like to get in touch with me, you can reach me via email or socials";
-              result.style.color = "";
-            }, 5000);
-          })
-          .catch((error) => {
-            result.textContent = "❌ Something went wrong. Please try again.";
-            result.style.color = "red";
-  
-            setTimeout(() => {
-              result.textContent = "If you would like to get in touch with me, you can reach me via email or socials";
-              result.style.color = "";
-            }, 5000);
-  
-            console.error("❌ EmailJS Error:", error);
-          });
-      });
-    }
-  });
-  
+  const contactForm = document.getElementById("contactForm");
+  const result = document.getElementById("result");
+
+  if (contactForm && result) {
+    emailjs.init("fJ4bUNEbuwI76kNto");
+
+    contactForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      emailjs.sendForm("service_ejb45tm", "template_gpy5l1d", this)
+        .then(() => {
+          result.textContent = "✅ Message sent successfully!";
+          result.style.color = "green";
+          contactForm.reset();
+
+          setTimeout(() => {
+            result.textContent = "If you would like to get in touch with me, you can reach me via email or socials";
+            result.style.color = "";
+          }, 5000);
+        })
+        .catch(error => {
+          result.textContent = "❌ Something went wrong. Please try again.";
+          result.style.color = "red";
+
+          setTimeout(() => {
+            result.textContent = "If you would like to get in touch with me, you can reach me via email or socials";
+          }, 5000);
+
+          console.error("❌ FAILED:", error);
+        });
+    });
+  }
 
   // === DARK/LIGHT TOGGLE ===
   const toggleBtn = document.getElementById("themeToggle");

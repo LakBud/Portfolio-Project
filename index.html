@@ -33,7 +33,7 @@
     <p>
     An up-coming 17 year old Web Developer. 
     I am nationally Norwegian and ethnically Pakistani.
-    Web Developing is a passion of mine which will probably be my career.
+    Web Developing is a passion of mine which might be a part of my career.
     Currently, I can do HTML, CSS and Vanilla JS in an intermediate level.
     </p>
 
@@ -140,14 +140,28 @@
   <br>
 
   <div class="contact-container">
-    <!-- Form -->
-    <form id="contactForm">
-      <p>Email:</p>
-      <input type="text" name="from_name" placeholder="Your Name" required><br><br>
-      <input type="email" name="from_email" placeholder="Your Email" required><br><br>
-      <textarea name="message" placeholder="Your Message" required></textarea><br><br>
-      <button type="submit">Send</button>
-    </form>
+<!-- Form -->
+<form action="https://formsubmit.co/lakhmir08@outlook.com" method="POST" id="contactForm">
+  <p>Email:</p>
+
+  <!-- Name -->
+  <input type="text" name="from_name" placeholder="Your Name" required><br><br>
+
+  <!-- Email -->
+  <input type="email" name="from_email" placeholder="Your Email" required><br><br>
+
+  <!-- Message -->
+  <textarea name="message" placeholder="Your Message" required></textarea><br><br>
+
+  <!-- Spam protection: Honeypot -->
+  <input type="text" name="_honey" style="display:none">
+
+  <!-- Double opt-in confirmation -->
+  <input type="hidden" name="_confirmation" value="true">
+
+  <button type="submit">Send</button>
+</form>
+
 
     <!-- Social links -->
     <div class="socialBox">
