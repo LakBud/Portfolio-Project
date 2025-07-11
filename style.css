@@ -210,13 +210,15 @@ a button {
 .contact-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 50px;
+  gap: 60px;
   align-items: flex-start;
 }
 
+
+
 .socialBox {
-  margin-top: 20px;
   text-align: center;
+  margin-top: 2px;
 }
 
 
