@@ -141,21 +141,15 @@
 
   <div class="contact-container">
 
-<!-- Form -->
+
 <form id="contactForm" action="https://formspree.io/f/xjkrnlay" method="POST">
-  <p>Email:</p>
+  <p>Email:</p><br>
 
-  <!-- Name -->
-  <input type="text" name="name" placeholder="Your Name" required><br><br>
-
-  <!-- Email -->
-  <input type="email" name="email" placeholder="Your Email" required><br><br>
-
-  <!-- Message -->
-  <textarea name="message" placeholder="Your Message" required></textarea><br><br>
-
-  <!-- Spam protection (honeypot) -->
+  <input type="text" name="name" class="textbox" placeholder="Your Name" required><br><br>
+  <input type="email" name="email" class="textbox" placeholder="Your Email" required><br><br>
+  <textarea name="message" class="textarea-box" placeholder="Your Message" required></textarea><br><br>
   <input type="text" name="_honey" style="display:none">
+  <input type="hidden" name="_redirect" value="https://lakbud.github.io/Portfolio-Project?success=true">
 
   <button type="submit">Send</button>
 </form>

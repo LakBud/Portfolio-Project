@@ -50,8 +50,21 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   }
 
-  
-  
+// EXTRA
+
+window.addEventListener("DOMContentLoaded", () => {
+  const result = document.getElementById("result");
+  const params = new URLSearchParams(window.location.search);
+
+  if (params.get("success") === "true" && result) {
+    result.textContent = "✅ Message sent successfully!";
+    result.style.color = "green";
+
+    // Optional: remove ?success=true from the URL without reloading the page
+    history.replaceState(null, "", window.location.pathname);
+  }
+});
+
 
   // === DARK/LIGHT TOGGLE ===
   const toggleBtn = document.getElementById("themeToggle");

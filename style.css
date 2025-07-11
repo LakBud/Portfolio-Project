@@ -35,7 +35,6 @@ header.title {
 }
 
 
-
 header.title .logo {
   height: 100px;
   width: auto;
@@ -206,9 +205,7 @@ a button {
   text-align: left;
 }
 
-#socials {
-  text-align: right;
-}
+
 
 .contact-container {
   display: flex;
@@ -219,6 +216,50 @@ a button {
 
 .socialBox {
   margin-top: 20px;
+  text-align: center;
+}
+
+
+
+.textarea-box {
+  width: 100%;
+  max-width: 600px;
+  height: 300px;
+  padding: 14px 16px;
+  border: 2px solid #ccc;
+  font-size: 0.75rem; 
+  font-family: 'Press Start 2P', monospace;
+  line-height: 1.8; 
+  letter-spacing: 1px; 
+  white-space: pre-wrap;
+  resize: vertical;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+}
+
+.textarea-box:focus {
+  border-color: #A47551;
+  outline: none;
+}
+
+.textbox {
+  width: 100%;
+  max-width: 600px;
+  height: 10px;
+  padding: 14px 16px;
+  border: 2px solid #ccc;
+  font-size: 0.75rem; 
+  font-family: 'Press Start 2P', monospace;
+  line-height: 2; 
+  white-space: pre-wrap;
+  resize: vertical;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+}
+
+.textbox:focus {
+  border-color: #A47551;
+  outline: none;
 }
 
 /* 7. Footer */
