@@ -50,13 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   }
 
-// EXTRA
 
-window.onbeforeunload = () => {
-  for(const form of document.getElementsByTagName('form')) {
-    form.reset();
-  }
-}
 
 
   // === DARK/LIGHT TOGGLE ===
@@ -116,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
               ${project.skills.map(skill => `<span class="skills">${skill}</span>`).join("")}
             </div>
             <p class="project-date">${project.date}</p>
-            <a href="${project.link}" target="_blank">View Project</a>
+            <a href="${project.link}" target="_blank">View</a>
           </div>
         `;
 
@@ -125,5 +119,3 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch((error) => console.error("Failed to load projects:", error));
 });
-
-
