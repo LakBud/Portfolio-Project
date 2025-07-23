@@ -50,9 +50,6 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   }
 
-
-
-
   // === DARK/LIGHT TOGGLE ===
   const toggleBtn = document.getElementById("themeToggle");
   const themeIcon = document.getElementById("themeIcon");
@@ -65,7 +62,6 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.setItem("theme", isDark ? "dark" : "light");
     });
 
-    // Load saved theme
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme === "dark") {
       document.body.classList.add("dark-mode");
@@ -74,28 +70,52 @@ document.addEventListener("DOMContentLoaded", () => {
       themeIcon.src = "ASSETS/moon.png";
     }
   }
-});
 
-// FETCH JSON PROJECTS
-
-const projects = [
-  {
-    "title": "Buddo's Portfolio",
-    "date": "9/6/2025",
-    "description": "The one you are looking at!",
-    "image": "ASSETS/placeholder.png",
-    "skills": ["HTML", "CSS", "JavaScript", "JSON"],
-    "link": "https://lakbud.github.io/Portfolio-Project"
+  // === INTERACTIVE DOG DIALOGUE ===
+  let petCount = 0;
+  let smileys = "";
+  
+  const dogResponse = document.getElementById("dogResponse");
+  const questionList = document.getElementById("questionList");
+  const petDog = document.getElementById("petDog");
+  
+  if (petDog && dogResponse && questionList) {
+    petDog.addEventListener("click", () => {
+      petCount++;
+      
+      // Add a smiley every 10th pet
+      if (petCount % 10 === 0) {
+        smileys += " :D";
+      }
+  
+      dogResponse.textContent = `Clicks: ${petCount}${smileys}`;
+    });
+  
+    const responses = {
+      updateLog: "I am currently working on the basics of React, however I still need to find a good tutorial first.",
+      services: "I am willing to create websites for cheap prices like this one! Contact me for more details!",
+      projects: "No projects yet, but I am working on it! Check back later!",
+      discord: ".buddo is my Discord",
+    };
+  
+    Object.entries(responses).forEach(([key, message]) => {
+      const btn = document.createElement("button");
+      btn.textContent = key.charAt(0).toUpperCase() + key.slice(1);
+      btn.onclick = () => {
+        dogResponse.textContent = message;
+      };
+      questionList.appendChild(btn);
+    });
   }
-];
+  
 
 
-
-document.addEventListener("DOMContentLoaded", () => {
+  // === PROJECT FETCH ===
   fetch("projects.json")
     .then((res) => res.json())
     .then((projects) => {
       const projectList = document.getElementById("project-list");
+      if (!projectList) return;
 
       projects.forEach((project) => {
         const article = document.createElement("article");
