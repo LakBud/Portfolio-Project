@@ -10,15 +10,20 @@
 </head>
 <body>
     
-    <header class="title">
-        <button id="themeToggle" class="theme-icon">
-          <img id="themeIcon" src="ASSETS/moon.png" alt="Toggle Theme" width="32" />
-        </button>
-      
-        <img src="ASSETS/favicon.PNG" alt="Logo" class="logo">
-        <h1>Buddo</h1>
-      
-      </header>
+  <header class="title">
+    <button id="themeToggle" class="theme-icon" aria-label="Toggle dark/light theme">
+      <img id="themeIcon" src="ASSETS/moon.png" alt="Toggle Theme" width="32" />
+    </button>
+  
+
+    <img src="ASSETS/favicon.PNG" alt="Buddo Logo" class="logo">
+
+    <div class="title-text">
+      <h1>Buddo</h1>
+      <p id="typed-subtitle"></p>
+    </div>
+  </header>
+  
 
 <main>
 
@@ -70,7 +75,17 @@
   </footer>
 
 
- <script src="scripts.js"></script>
+<!-- Scripts-->
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+
+
+ 
+<script src="scripts.js" defer></script>
 
 </body>
 </html>

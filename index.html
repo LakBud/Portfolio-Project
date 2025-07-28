@@ -7,22 +7,25 @@
     <link rel="stylesheet" href = "style.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="icon" href="ASSETS/favicon.PNG" type="ASSETS/png">
+    
+
 </head>
 
 <body>
+  <header class="title">
+    <button id="themeToggle" class="theme-icon" aria-label="Toggle dark/light theme">
+      <img id="themeIcon" src="ASSETS/moon.png" alt="Toggle Theme" width="32" />
+    </button>
+  
 
+    <img src="ASSETS/favicon.PNG" alt="Buddo Logo" class="logo">
 
-
-<header class="title">
-  <button id="themeToggle" class="theme-icon">
-    <img id="themeIcon" src="ASSETS/moon.png" alt="Toggle Theme" width="32" />
-  </button>
-
-  <img src="ASSETS/favicon.PNG" alt="Logo" class="logo">
-  <h1>Buddo</h1>
-
-</header>
-
+    <div class="title-text">
+      <h1>Buddo</h1>
+      <p id="typed-subtitle"></p>
+    </div>
+  </header>
+  
 <main>
 
 
@@ -43,46 +46,41 @@
 
 <div class="interests-slider-container">
   
-    <section class="interests">
-      <h2>Interests</h2>
-      <ul>
-        <div class="interest-item">
-          <p>💻 Web-Developing</p>
-          <div class="progress-bar"><div class="progress" style="width: 85%"></div></div>
-        </div>
-        <div class="interest-item">
-          <p>♟️ Chess</p>
-          <div class="progress-bar"><div class="progress" style="width: 70%"></div></div>
-        </div>
-        <div class="interest-item">
-          <p>🐉 Dragon Ball</p>
-          <div class="progress-bar"><div class="progress" style="width: 100%"></div></div>
-        </div>
-        <div class="interest-item">
-          <p>⚽ Fotball (PSG)</p>
-          <div class="progress-bar"><div class="progress" style="width: 95%"></div></div>
-        </div>
-        <div class="interest-item">
-          <p> 🎤 TV Shows</p>
-          <div class="progress-bar"><div class="progress" style="width: 60%"></div></div>
-        </div>
-        <div class="interest-item">
-          <p> 🕹️ Games</p>
-          <div class="progress-bar"><div class="progress" style="width: 50%"></div></div>
-        </div>
-      </ul> 
-    </section>
-
-
+  <section class="interests">
+    <h2>Interests</h2>
+    <ul>
+      <li class="interest-item">
+        <p>💻 Web Development</p>
+        <div class="progress-bar"><div class="progress" style="--progress-width: 100%"></div></div>
+      </li>
+      <li class="interest-item">
+        <p>♟️ Chess (1100 EL0)</p>
+        <div class="progress-bar"><div class="progress" style="--progress-width: 70%"></div></div>
+      </li>
+      <li class="interest-item">
+        <p>⚽ Fotball (PSG)</p>
+        <div class="progress-bar"><div class="progress" style="--progress-width: 95%"></div></div>
+      </li>
+      <li class="interest-item">
+        <p>🎤 TV Shows (DBZ, Dexter)</p>
+        <div class="progress-bar"><div class="progress" style="--progress-width: 60%"></div></div>
+      </li>
+      <li class="interest-item">
+        <p>🕹️ Games</p>
+        <div class="progress-bar"><div class="progress" style="--progress-width: 50%"></div></div>
+      </li>
+    </ul> 
+  </section>
+  
 
     <div class="slider">
         <div class="slides">
           <img class="slide" src="ASSETS/chess.webp" alt="chess">
-          <img class="slide" src="ASSETS/Fotball.webp" alt="Fotball">
-          <img class="slide" src="ASSETS/JS.webp" alt="JS">
+          <img class="slide" src="ASSETS/psg.webp" alt="Fotball">
+          <img class="slide" src="ASSETS/web.webp" alt="Web">
         </div>
-        <button class="prev" onclick="prevSlide()">&#60;</button>
-        <button class="next" onclick="nextSlide()">&#62;</button>
+        <button id="prevBtn" class="prev" onclick="prevSlide()">&#60;</button>
+        <button id="nextBtn" class="next" onclick="nextSlide()">&#62;</button>
       </div>
 
 </div>
@@ -107,7 +105,7 @@
       <li>MySQL/MongoDB</li>
     </ol>
   
-    <button onclick="shuffleGoals()">Wanna Shuffle?</button>
+    <button onclick="shuffleGoals()">Shuffle?</button>
   </section>
 
   <section class="projectIntro">
@@ -120,17 +118,10 @@
 
     <a href= "https://lakbud.github.io/Portfolio-Project/projects.html">
         <button>Projects</button>
-      </a><br><br><br><br>
-      <img src="ASSETS/favicon.PNG" class="projectLogo" id="petDog" alt="Click the dog">
-      <br><br>
-
-      <article class="qa-box">
-        <div class="pixel-box" id="dogResponse">Ask me something!</div>
-        <br>
-      
-        <div class="question-list" id="questionList"></div>
-      </article>
-      
+      </a>
+      <br><br><br>
+ 
+      <img src="ASSETS/favicon.PNG" alt="Buddo Logo" class="logo">
 
 
   </section>
@@ -154,15 +145,12 @@
 
 
 <form id="contactForm" action="https://formspree.io/f/xjkrnlay" method="POST">
-  <p>Email (reCAPTCHA):</p><br>
+  <p id="formMessage" role="alert" aria-live="polite">Email (reCAPTCHA):</p><br>
 
   <input type="text" name="name" class="textbox" placeholder="Your Name" required><br><br>
   <input type="email" name="email" class="textbox" placeholder="Your Email" required><br><br>
   <textarea name="message" class="textarea-box" placeholder="Your Message" required></textarea><br><br>
   <input type="text" name="_honey" style="display:none">
-
-  
-
   <button type="submit" id="sendEmail">Send</button>
 </form>
 
@@ -235,9 +223,9 @@
     animation: 150
   });
 </script>
-
-
-
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+ 
 <script src="scripts.js" defer></script>
 
 

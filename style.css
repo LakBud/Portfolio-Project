@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-/* 1. Reset + Global Styles */
+/* === 0. Reset + Global Styles === */
 
 * {
   margin: 0;
@@ -10,46 +10,45 @@
 }
 
 body {
-  font-family: 'Press Start 2P', cursive; 
-  background-color: #FAF7F2; /* light brown/cream */
-  color: #3B2E2A; 
+  font-family: 'Press Start 2P', cursive;
+  background-color: var(--bg-color, #FAF7F2);
+  color: var(--text-color, #3B2E2A);
   line-height: 1.6;
-  image-rendering: pixelated; 
+  image-rendering: pixelated;
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 main {
   max-width: 1000px;
   margin: auto;
-  padding: 20px;
-  padding-bottom: 60px;
+  padding: 20px 20px 60px;
 }
 
-/* 2. Header */
+/* === 1. Header === */
+
 header.title {
   background: linear-gradient(135deg, #BFA27A, #8B5E3C);
   color: white;
   padding: 30px;
   display: flex;
   align-items: center;
-  justify-content: center;  
+  justify-content: center;
   gap: 20px;
   image-rendering: pixelated;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-
-header.title .logo {
+.logo {
   height: 100px;
   width: auto;
   border: 5px solid #a6690e;
   image-rendering: pixelated;
-  transition: transform 0.3s ease;
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-header.title .logo:hover {
-  transform: scale(1.02);
+.logo:hover {
+  transform: scale(1.20);
 }
-
 
 header.title h1 {
   font-size: 1.5rem;
@@ -58,30 +57,99 @@ header.title h1 {
   color: white;
 }
 
+#typed-subtitle {
+  display: inline;
+  position: relative;
+  white-space: normal;
+  word-break: break-word;
+}
 
+#typed-subtitle::after {
+  content: '|';
+  position: absolute;
+  animation: blink 1.2s ease-in-out infinite;
+  color: inherit;
+}
 
-/* 3. Section Base Styling */
+@keyframes blink {
+  0%, 50%, 100% {
+    opacity: 1;
+  }
+  25%, 75% {
+    opacity: 0;
+  }
+}
+
+/* === 2. Section Base Styling === */
+
 section {
-  background-color: var(--section-bg);
+  background-color: var(--section-bg, #fff);
   padding: 25px;
   margin: 20px 0;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  border-radius: 5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   image-rendering: pixelated;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+@media (max-width: 768px) {
+  section {
+    padding: 20px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  section {
+    padding: 15px 10px;
+  }
+}
+
+section:hover {
+  transform: scale(1.02);
+}
+
+/* Section animation (fade + slide) */
+.section-hidden {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.section-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Child elements (staggered scale-in) */
+.section-child {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.section-child-visible {
+  opacity: 1;
+  transform: scale(1);
 }
 
 section h2 {
   margin-bottom: 15px;
   font-size: 1.2rem;
-  color: #8B5E3C; /* dark brown */
+  color: #8B5E3C;
 }
 
-/* 4. About Me */
+/* === 3. About Me === */
+
 .about {
   text-align: left;
 }
 
-/* 4. Interests + Slider */
+/* === 4. Interests + Slider === */
+
 .interests-slider-container {
   display: flex;
   flex-wrap: wrap;
@@ -96,50 +164,64 @@ section h2 {
   list-style: square;
   padding-left: 20px;
   font-size: 0.9rem;
+  list-style: none;
+  padding-left: 0;
+  
 }
 
 .interest-item {
   margin-bottom: 15px;
 }
 
+/* Progress Bars */
+
 .progress-bar {
   background: #e0e0e0;
-  border-radius: 8px;
   height: 20px;
   overflow: hidden;
 }
 
 .progress {
   height: 100%;
-  background: linear-gradient(90deg, #A47551, #DCC7AA); /* brown blend */
+  background: linear-gradient(90deg, #9f693f, #cdb088);
   width: 0;
-  transition: width 1s ease;
+  transition: width 1.5s ease;
 }
+
+/* Slider */
 
 .slider {
   flex: 1;
   position: relative;
-  max-height: 468px;
+  max-height: 400px;
   overflow: hidden;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  margin-top: 25px;
-  image-rendering: pixelated;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
-.slider img {
+
+.slides img {
+  position: absolute;
   width: 100%;
   height: 468px;
   object-fit: cover;
-  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
   transition: opacity 0.6s ease;
-  image-rendering: pixelated;
+  pointer-events: none;
 }
 
-img.displaySlide {
-  display: block;
-  animation-name: fade;
-  animation-duration: 1.5s;
+.slides img.active {
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 1;
 }
+.slider:hover {
+  transform: scale(1.02);
+}
+
 .slider button {
   position: absolute;
   top: 50%;
@@ -152,15 +234,19 @@ img.displaySlide {
   cursor: pointer;
   border-radius: 4px;
   font-family: 'Press Start 2P', cursive;
+  z-index: 10; 
 }
+
 .slider .prev {
   left: 10px;
 }
+
 .slider .next {
   right: 10px;
 }
 
-/* 5. Goals + Projects Layout */
+/* === 5. Goals + Projects Layout === */
+
 .goals-project-container {
   display: flex;
   flex-wrap: wrap;
@@ -171,74 +257,15 @@ img.displaySlide {
   flex: 1;
 }
 
-.projectLogo{
-  width: 40%;
-  margin: 0 auto;
-  transition: transform 0.3s ease;
-  border-radius: 2px;
-}
-
-.projectLogo:hover{
-  transform: scale(1.08);
-  cursor: pointer;
-  box-shadow :var(--accent-color);
-}
-
-
-.pixel-box {
-  min-height: 120px; 
-  font-size: 1rem;
-  padding: 8px;
-  border: 4px solid #000;
-  box-shadow: 4px 4px 0 #000;
-  image-rendering: pixelated;
-  font-family: 'Press Start 2P', monospace;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 10px;
-}
-
-
-.question-list {
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-  padding: 10px;
-}
-
-
-
-.question-list button {
-  color: white;
-  padding: 0.4rem 1rem;
-  font-size: 1rem;
-  border: 2px solid black;
-  box-shadow: 3px 3px 0 black;
-  transition: background-color 0.3s ease;
-}
-
-.question-list button:hover {
-  background-color: rgb(183, 81, 3);
-  box-shadow: none;
-  transform: translate(2px, 2px);
-}
-
-.question-list button:active {
-  transform: translate(1px, 1px);
-  box-shadow: 2px 2px 0 #000;
-}
-
-
 ol#goals-list {
   padding-left: 50px;
   margin-bottom: 15px;
 }
 
+/* Buttons */
+
 button {
-  background-color: #8B5E3C; /* brown */
+  background-color: var(--accent-color, #8B5E3C);
   color: white;
   padding: 10px 20px;
   border: none;
@@ -248,11 +275,10 @@ button {
   transition: background 0.3s ease;
   font-family: 'Press Start 2P', cursive;
   height: 35px;
-  
 }
 
 button:hover {
-  background-color: #6C4C34; /* darker brown */
+  background-color: #6C4C34;
 }
 
 a button {
@@ -263,16 +289,17 @@ a button {
   text-align: center;
 }
 
-/* 6. Contact Section */
+/* === 6. Contact Section === */
+
+.contact {
+  text-align: center;
+}
+
 .contact a {
   display: block;
   color: #8B5E3C;
   text-decoration: none;
   font-weight: bold;
-}
-
-.contact{
-  text-align: center;
 }
 
 .contact a:hover {
@@ -288,7 +315,6 @@ a button {
   margin-left: 95px;
 }
 
-
 .contact-container {
   display: flex;
   flex-wrap: wrap;
@@ -297,56 +323,45 @@ a button {
   justify-content: center;
 }
 
-
-
 .socialBox {
   text-align: center;
 }
 
+/* Text Inputs & Textareas */
 
-
-.textarea-box {
-  width: 100%;
-  max-width: 300px;
-  height: 300px;
-  padding: 14px 16px;
-  border: 2px solid #ccc;
-  font-size: 0.75rem; 
-  font-family: 'Press Start 2P', monospace;
-  line-height: 1.8; 
-  letter-spacing: 1px; 
-  white-space: pre-wrap;
-  resize: vertical;
-  box-sizing: border-box;
-  transition: border-color 0.3s;
-}
-
-.textarea-box:focus {
-  border-color: #A47551;
-  outline: none;
-}
-
+.textarea-box,
 .textbox {
   width: 100%;
   max-width: 300px;
-  height: 10px;
   padding: 14px 16px;
   border: 2px solid #ccc;
-  font-size: 0.75rem; 
+  font-size: 0.75rem;
   font-family: 'Press Start 2P', monospace;
-  line-height: 2; 
+  line-height: 1.8;
+  letter-spacing: 1px;
   white-space: pre-wrap;
   resize: vertical;
   box-sizing: border-box;
   transition: border-color 0.3s;
 }
 
+.textarea-box {
+  height: 300px;
+}
+
+.textbox {
+  height: 10px;
+  line-height: 2;
+}
+
+.textarea-box:focus,
 .textbox:focus {
   border-color: #A47551;
   outline: none;
 }
 
-/* 7. Footer */
+/* === 7. Footer === */
+
 footer {
   display: flex;
   align-items: center;
@@ -383,6 +398,39 @@ footer {
   flex-wrap: wrap;
 }
 
+.fixed-social-icons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  transition: background 0.2s;
+  text-decoration: none;
+}
+
+.fixed-social-icons svg {
+  width: 30px;
+  height: 30px;
+  transition: transform 0.3s ease;
+}
+
+.fixed-social-icons a:hover {
+  background-color: #ffffff;
+}
+
+.fixed-social-icons a:hover svg {
+  transform: scale(1.2);
+}
+
+.fixed-social-icons .youtube-icon svg {
+  fill: #FF0000;
+}
+
+.fixed-social-icons .x-icon svg,
+.fixed-social-icons .github-icon svg {
+  fill: #000;
+}
+
 .footer-text {
   flex: 1;
   display: flex;
@@ -390,11 +438,9 @@ footer {
   align-items: center;
 }
 
-
 .footer-spacer {
-  width: 90px; 
+  width: 90px;
 }
-
 
 @media (max-width: 700px) {
   .footer-inner {
@@ -413,45 +459,8 @@ footer {
   }
 }
 
+/* === 8. Responsive Tweaks === */
 
-
-.fixed-social-icons a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 38px;
-  height: 38px;
-  transition: background 0.2s;
-  text-decoration: none;
-}
-
-.fixed-social-icons svg {
-  width: 30px;
-  height: 30px;
-}
-
-.fixed-social-icons a:hover {
-  background-color: #ffffff;
-  
-  
-}
-
-.fixed-social-icons a:hover svg {
-  transform: scale(1.2);
-}
-
-.fixed-social-icons .youtube-icon svg {
-  fill: #FF0000;
-}
-
-.fixed-social-icons .x-icon svg,
-.fixed-social-icons .github-icon svg {
-  fill: #000;
-}
-
-
-
-/* 8. Responsive Tweak */
 @media (max-width: 768px) {
   .interests-slider-container,
   .goals-project-container {
@@ -459,58 +468,48 @@ footer {
   }
 }
 
+/* === Animations === */
+
 @keyframes fade {
   from { opacity: 0.5; }
   to { opacity: 1; }
 }
 
+@keyframes fillProgress {
+  to { width: var(--progress-width); }
+}
+
+/* === 9. Utility Classes === */
+
 .sortable-ghost {
   opacity: 0 !important;
 }
 
-
-
-
-
-/* 10. Dark/Light mode toggle */
+/* === 10. Dark/Light mode toggle variables === */
 
 :root {
-  --bg-color: #F9F5EC;           /* Slightly warmer paper-white */
-  --text-color: #2C1E1A;         /* Darker brown for more contrast */
-  --accent-color: #A06534;       /* Bolder earthy orange-brown */
-  --section-bg: #FFFFFF;         /* Keep sections clean and minimal */
-  --card-bg: #FFEFD5;            /* Light pastel that pops on white */
-  --border-color: #3A2F2A;       /* Softer than black, still clear */
-  --outline-color: #FFF8F1;      /* Light warm outline for focus */
-  --highlight-color: #A06534;    /* Same as accent for consistency */
+  --bg-color: #F9F5EC;
+  --text-color: #2C1E1A;
+  --accent-color: #A06534;
+  --section-bg: #FFFFFF;
+  --card-bg: #FFEFD5;
+  --border-color: #3A2F2A;
+  --outline-color: #FFF8F1;
+  --highlight-color: #A06534;
 }
 
 body.dark-mode {
-  --bg-color: #0E0E0E;           /* Darker for old CRT feeling */
-  --text-color: #F0E6DC;         /* Soft light-beige, readable */
-  --section-bg: #1A1A1A;         /* Clear contrast from bg */
-  --card-bg: #2A2420;            /* Deep brownish-gray */
-  --border-color: #3B3B3B;       /* Defined but not harsh */
-  --outline-color: #26221F;      /* Retro-friendly brown-black */
-  --highlight-color: #C38A5F;    /* Gold-bronze retro highlight */
+  --bg-color: #0E0E0E;
+  --text-color: #F0E6DC;
+  --section-bg: #1A1A1A;
+  --card-bg: #2A2420;
+  --border-color: #3B3B3B;
+  --outline-color: #26221F;
+  --highlight-color: #C38A5F;
 }
 
+/* === 11. Theme Toggle Button === */
 
-/* Global application */
-body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-}
-
-section {
-  background-color: var(--section-bg);
-}
-
-button {
-  background-color: var(--accent-color);
-}
-
-/* Theme toggle button */
 .theme-icon {
   background: none;
   border: none;
@@ -528,7 +527,8 @@ button {
   image-rendering: pixelated;
 }
 
-/* Project Title Styling */
+/* === 12. Project Title Styling === */
+
 #project-h1 {
   text-align: center;
   margin-bottom: 2rem;
@@ -553,8 +553,6 @@ button {
     font-size: 1.2rem;
   }
 }
-
-
 
 /* Wrapper for all cards */
 .project-row {
@@ -650,4 +648,71 @@ button {
 
 .project-txt a:hover {
   color: #5E3B23;
+}
+
+/* === Responsive font size tweaks === */
+
+@media (max-width: 768px) {
+  body {
+    font-size: 0.85rem;
+    line-height: 1.8;
+  }
+
+  header.title h1 {
+    font-size: 1.3rem;
+  }
+
+  section h2 {
+    font-size: 1rem;
+  }
+
+  .project-h3 {
+    font-size: 1.4rem;
+  }
+
+  .project-p,
+  .interests ul,
+  .skills {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 0.9rem;
+    line-height: 1.8;
+  }
+
+  header.title h1 {
+    font-size: 1.1rem;
+  }
+
+  section h2 {
+    font-size: 0.9rem;
+  }
+
+  .project-h3 {
+    font-size: 1.2rem;
+  }
+
+  .project-p,
+  .interests ul,
+  .skills {
+    font-size: 0.85rem;
+  }
+
+  button {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #typed-subtitle {
+    font-size: 0.9rem;
+    line-height: 2;
+    letter-spacing: 1.2px;
+    white-space: normal;
+    text-align: center;
+    padding: 8px 0;
+  }
 }

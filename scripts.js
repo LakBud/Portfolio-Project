@@ -1,20 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
+  
   // === IMAGE SLIDER ===
   const slides = document.querySelectorAll(".slides img");
   let slideIndex = 0;
   let intervalID = null;
 
   if (slides.length > 0) {
-    slides.forEach(slide => (slide.style.display = "none"));
+    slides.forEach(slide => slide.classList.remove("active"));
     showSlide(slideIndex);
     intervalID = setInterval(() => changeSlide(1), 5000);
   }
 
   function showSlide(index) {
-    slides.forEach(slide => (slide.style.display = "none"));
+    slides.forEach(slide => slide.classList.remove("active"));
     if (index >= slides.length) index = 0;
     if (index < 0) index = slides.length - 1;
-    slides[index].style.display = "block";
+    slides[index].classList.add("active");
     slideIndex = index;
   }
 
@@ -71,56 +72,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // === INTERACTIVE DOG DIALOGUE ===
-  let petCount = 0;
-  let smileys = "";
-  
-  const dogResponse = document.getElementById("dogResponse");
-  const questionList = document.getElementById("questionList");
-  const petDog = document.getElementById("petDog");
-  
-  if (petDog && dogResponse && questionList) {
-    petDog.addEventListener("click", () => {
-      petCount++;
-      
-      // Add a smiley every 10th pet
-      if (petCount % 10 === 0) {
-        smileys += " :D";
-      }
-  
-      dogResponse.textContent = `Clicks: ${petCount}${smileys}`;
-    });
-  
-    const responses = {
-      updateLog: "I am currently working on the basics of React, however I still need to find a good tutorial first.",
-      services: "I am willing to create websites for cheap prices like this one! Contact me for more details!",
-      projects: "No projects yet, but I am working on it! Check back later!",
-      discord: ".buddo is my Discord",
-    };
-  
-    Object.entries(responses).forEach(([key, message]) => {
-      const btn = document.createElement("button");
-      btn.textContent = key.charAt(0).toUpperCase() + key.slice(1);
-      btn.onclick = () => {
-        dogResponse.textContent = message;
-      };
-      questionList.appendChild(btn);
-    });
-  }
-  
-
-
   // === PROJECT FETCH ===
   fetch("projects.json")
-    .then((res) => res.json())
-    .then((projects) => {
+    .then(res => res.json())
+    .then(projects => {
       const projectList = document.getElementById("project-list");
       if (!projectList) return;
 
-      projects.forEach((project) => {
+      projects.forEach(project => {
         const article = document.createElement("article");
         article.classList.add("project-container");
-
+      
         article.innerHTML = `
           <img src="${project.image}" alt="${project.title}" class="project-img" />
           <div class="project-txt">
@@ -130,12 +92,127 @@ document.addEventListener("DOMContentLoaded", () => {
               ${project.skills.map(skill => `<span class="skills">${skill}</span>`).join("")}
             </div>
             <p class="project-date">${project.date}</p>
-            <a href="${project.link}" target="_blank">View</a>
+            <a href="${project.link}" target="_blank" class="project-link">View</a>
           </div>
         `;
+      
 
         projectList.appendChild(article);
+      
+
+        article.querySelectorAll('.skills').forEach(skillEl => {
+          skillEl.addEventListener('mouseenter', () => {
+            hoverSound.play();
+          });
+        });
+      
+
+        const link = article.querySelector('.project-link');
+        if (link) {
+          link.addEventListener('click', () => {
+            clickSound.play();
+          });
+        }
       });
     })
-    .catch((error) => console.error("Failed to load projects:", error));
+    .catch(error => console.error("Failed to load projects:", error));
+
+  // === ANIMATION ===
+  const sections = document.querySelectorAll("section");
+  const progressBars = document.querySelectorAll(".progress");
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(({ target, isIntersecting }) => {
+      if (!isIntersecting) return;
+
+      if (target.tagName === "SECTION") {
+        target.classList.add("section-visible");
+        target.querySelectorAll(".section-child").forEach((child, i) => {
+          setTimeout(() => child.classList.add("section-child-visible"), i * 150);
+        });
+      } else if (target.classList.contains("progress")) {
+        target.style.width = target.style.getPropertyValue("--progress-width");
+      }
+    });
+  }, { threshold: 0.2 });
+
+  sections.forEach(section => {
+    section.classList.add("section-hidden");
+    section.querySelectorAll(
+      ":scope > *:not(.progress-bar):not(.slider):not(.slides)"
+    ).forEach(child => child.classList.add("section-child"));
+    observer.observe(section);
+  });
+
+  progressBars.forEach(bar => {
+    bar.style.width = 0;
+    observer.observe(bar);
+  });
+
+  new Typed('#typed-subtitle', {
+    strings: [
+      "17 Year Old Web Developer",
+      "Aspiring Fullstack Developer",
+      "Tech Learner"
+    ],
+    typeSpeed: 20,
+    backSpeed: 30,
+    backDelay: 1500,
+    loop: true,
+    smartBackspace: true,
+    showCursor: false 
+  });
+
+  // === CLEAR FORM ===
+  const form = document.getElementById('contactForm');
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      form.reset();
+    });
+  }
 });
+
+  // === SOUND EFFECTS ===
+
+  const hoverSound = new Howl({
+    src: ['ASSETS/hover.mp3'],
+    volume: 0.3
+  });
+  const clickSound = new Howl({
+    src: ['ASSETS/click.mp3'],
+    volume: 0.6
+  });
+  
+  document.querySelectorAll('a, button').forEach(el => {
+
+    
+    el.addEventListener('mouseenter', () => hoverSound.play());
+    if (el.id === 'nextBtn' || el.id === 'prevBtn') return;
+    el.addEventListener('click', () => clickSound.play());
+  });
+
+
+  const slideSound = new Howl({
+    src: ['ASSETS/slide.mp3'] 
+  });
+  
+  document.getElementById('prevBtn').addEventListener('click', () => {
+    slideSound.play();
+  });
+  
+  document.getElementById('nextBtn').addEventListener('click', () => {
+    slideSound.play();
+  });
+
+  const dogSound = new Howl({
+    src: ['ASSETS/dog.mp3'], 
+    volume: 0.5,
+    loop: false
+  });
+
+  
+  document.querySelectorAll('.logo').forEach(dogEl => {
+    dogEl.addEventListener('click', () => {
+      dogSound.play();
+    });
+  });
