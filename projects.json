@@ -3,8 +3,8 @@
       "title": "Buddo's Portfolio",
       "date": "9/6/2025",
       "description": "The one you are looking at!",
-      "image": "ASSETS/placeholder.png",
+      "image": "ASSETS/placeholder.webp",
       "skills": ["HTML", "CSS", "JavaScript", "JSON"],
-      "link": "https://lakbud.github.io/Portfolio-Project"
+      "link": "buddo.vercel.app"
     }
 ]

@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  
+
   // === IMAGE SLIDER ===
   const slides = document.querySelectorAll(".slides img");
   let slideIndex = 0;
@@ -95,23 +95,15 @@ document.addEventListener("DOMContentLoaded", () => {
             <a href="${project.link}" target="_blank" class="project-link">View</a>
           </div>
         `;
-      
-
         projectList.appendChild(article);
-      
 
         article.querySelectorAll('.skills').forEach(skillEl => {
-          skillEl.addEventListener('mouseenter', () => {
-            hoverSound.play();
-          });
+          skillEl.addEventListener('mouseenter', () => hoverSound.play());
         });
-      
 
         const link = article.querySelector('.project-link');
         if (link) {
-          link.addEventListener('click', () => {
-            clickSound.play();
-          });
+          link.addEventListener('click', () => clickSound.play());
         }
       });
     })
@@ -149,6 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
     observer.observe(bar);
   });
 
+  // === TYPEWRITER EFFECT ===
   new Typed('#typed-subtitle', {
     strings: [
       "17 Year Old Web Developer",
@@ -170,11 +163,8 @@ document.addEventListener("DOMContentLoaded", () => {
       form.reset();
     });
   }
-});
-
 
   // === SOUND EFFECTS ===
-
   const hoverSound = new Howl({
     src: ['ASSETS/hover.mp3'],
     volume: 0.3
@@ -183,27 +173,21 @@ document.addEventListener("DOMContentLoaded", () => {
     src: ['ASSETS/click.mp3'],
     volume: 0.6
   });
-  
-  document.querySelectorAll('a, button').forEach(el => {
 
-    
+  document.querySelectorAll('a, button').forEach(el => {
     el.addEventListener('mouseenter', () => hoverSound.play());
     if (el.id === 'nextBtn' || el.id === 'prevBtn') return;
     el.addEventListener('click', () => clickSound.play());
   });
 
-
   const slideSound = new Howl({
     src: ['ASSETS/slide.mp3'] 
   });
-  
-  document.getElementById('prevBtn').addEventListener('click', () => {
-    slideSound.play();
-  });
-  
-  document.getElementById('nextBtn').addEventListener('click', () => {
-    slideSound.play();
-  });
+
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  if (prevBtn) prevBtn.addEventListener('click', () => slideSound.play());
+  if (nextBtn) nextBtn.addEventListener('click', () => slideSound.play());
 
   const dogSound = new Howl({
     src: ['ASSETS/dog.mp3'], 
@@ -211,10 +195,10 @@ document.addEventListener("DOMContentLoaded", () => {
     loop: false
   });
 
-  
   document.querySelectorAll('.logo').forEach(dogEl => {
     dogEl.addEventListener('click', () => {
       dogSound.play();
     });
   });
+});
 

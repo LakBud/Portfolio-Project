@@ -6,7 +6,7 @@
     <title>BuddoProjects</title>
     <link rel="stylesheet" href = "style.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <link rel="icon" href="ASSETS/favicon.PNG" type="ASSETS/png">
+    <link rel="icon" href="ASSETS/buddo.webp" type="ASSETS/png">
 </head>
 <body>
     
@@ -16,7 +16,7 @@
     </button>
   
 
-    <img src="ASSETS/favicon.PNG" alt="Buddo Logo" class="logo">
+    <img src="ASSETS/buddo.webp" alt="Buddo Logo" class="logo">
 
     <div class="title-text">
       <h1>Buddo</h1>
@@ -76,14 +76,14 @@
 
 
 <!-- Scripts-->
-
-
-
-
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+<script>
+  Sortable.create(document.querySelector(".goals ol"), {
+    animation: 150
+  });
+</script>
 <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
-
-
  
 <script src="scripts.js" defer></script>
 
