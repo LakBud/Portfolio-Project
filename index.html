@@ -14,7 +14,11 @@
 <body>
   <header class="title">
     <button id="themeToggle" class="theme-icon" aria-label="Toggle dark/light theme">
-      <img id="themeIcon" src="ASSETS/moon.png" alt="Toggle Theme" width="32" />
+      <img id="themeIcon" src="ASSETS/moon.webp" alt="Toggle Theme" width="40" />
+    </button>
+
+    <button id="volumeToggle" class="volume-icon" aria-label="Toggle volume on/of">
+      <img id="volumeIcon" src="ASSETS/volume.webp" alt="Toggle Volume" width="40" />
     </button>
   
     <img src="ASSETS/buddo.webp" alt="Buddo Logo" class="logo">
@@ -151,7 +155,6 @@
   <input type="email" name="email" class="textbox" placeholder="Your Email" required><br><br>
   <textarea name="message" class="textarea-box" placeholder="Your Message" required></textarea><br><br>
   <input type="text" name="_honey" style="display:none">
-  <input type="hidden" name="_next" value="https://buddo.vercel.app/thanks.html">
   <button type="submit" id="sendEmail">Send</button>
 </form>
 
@@ -166,6 +169,10 @@
     </div>
   </div>
 </section>
+
+<p style="text-align: center; font-size: 1rem; padding: 10px">
+  For email: If reCAPTCHA has been completed, I'll get back to you as soon as possible :)<br><br><br>
+</p>
 
 </main>
 

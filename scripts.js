@@ -51,26 +51,44 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   }
 
-  // === DARK/LIGHT TOGGLE ===
-  const toggleBtn = document.getElementById("themeToggle");
-  const themeIcon = document.getElementById("themeIcon");
 
-  if (toggleBtn && themeIcon) {
-    toggleBtn.addEventListener("click", () => {
-      document.body.classList.toggle("dark-mode");
-      const isDark = document.body.classList.contains("dark-mode");
-      themeIcon.src = isDark ? "ASSETS/sun.png" : "ASSETS/moon.png";
-      localStorage.setItem("theme", isDark ? "dark" : "light");
-    });
+// === DARK/LIGHT TOGGLE ===
+const toggleBtn = document.getElementById("themeToggle");
+const themeIcon = document.getElementById("themeIcon");
 
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme === "dark") {
-      document.body.classList.add("dark-mode");
-      themeIcon.src = "ASSETS/sun.png";
-    } else {
-      themeIcon.src = "ASSETS/moon.png";
-    }
+
+const themeSound = new Howl({
+  src: ['ASSETS/woosh.mp3'],
+  volume: 0.6,
+  preload: true
+});
+
+if (toggleBtn && themeIcon) {
+  toggleBtn.addEventListener("click", () => {
+
+    document.body.classList.toggle("dark-mode");
+    const isDark = document.body.classList.contains("dark-mode");
+
+
+    themeIcon.src = isDark ? "ASSETS/sun.webp" : "ASSETS/moon.webp";
+
+
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+
+
+    themeSound.play();
+  });
+
+  // Restore saved theme on page load
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark") {
+    document.body.classList.add("dark-mode");
+    themeIcon.src = "ASSETS/sun.webp";
+  } else {
+    themeIcon.src = "ASSETS/moon.webp";
   }
+}
+
 
   // === PROJECT FETCH ===
   fetch("projects.json")
@@ -164,6 +182,50 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+
+  // === TOGGLE VOLUME ===
+  const volumeToggle = document.getElementById('volumeToggle');
+  const volumeIcon = document.getElementById('volumeIcon');
+  
+
+  const toggleClickSound = new Howl({
+    src: ['ASSETS/volume-click.mp3'],
+    volume: 0.5
+  });
+  
+  let soundOn = true;
+  
+
+  const savedSoundOn = localStorage.getItem('soundOn');
+  if (savedSoundOn !== null) {
+    soundOn = savedSoundOn === 'true';
+    Howler.mute(!soundOn);
+    volumeIcon.src = soundOn ? 'ASSETS/volume.webp' : 'ASSETS/volume-muted.webp';
+    volumeIcon.alt = soundOn ? 'Volume On' : 'Volume Off';
+  } else {
+    Howler.mute(false);
+    volumeIcon.src = 'ASSETS/volume.webp';
+    volumeIcon.alt = 'Volume On';
+  }
+  
+  volumeToggle.addEventListener('click', () => {
+    soundOn = !soundOn;
+  
+    Howler.mute(!soundOn);
+  
+    volumeIcon.src = soundOn ? 'ASSETS/volume.webp' : 'ASSETS/volume-muted.webp';
+    volumeIcon.alt = soundOn ? 'Volume On' : 'Volume Off';
+  
+    localStorage.setItem('soundOn', soundOn);
+  
+
+    if (soundOn) {
+      toggleClickSound.play();
+    }
+  });
+  
+  
+
   // === SOUND EFFECTS ===
   const hoverSound = new Howl({
     src: ['ASSETS/hover.mp3'],
@@ -176,12 +238,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.querySelectorAll('a, button').forEach(el => {
     el.addEventListener('mouseenter', () => hoverSound.play());
-    if (el.id === 'nextBtn' || el.id === 'prevBtn') return;
+    if (el.id === 'nextBtn' || el.id === 'prevBtn'  || el.id === 'themeToggle'  || el.id === 'volumeToggle') return;
     el.addEventListener('click', () => clickSound.play());
   });
 
   const slideSound = new Howl({
-    src: ['ASSETS/slide.mp3'] 
+    src: ['ASSETS/slide.mp3'],
+    volume: 0.3
   });
 
   const prevBtn = document.getElementById('prevBtn');
@@ -200,5 +263,8 @@ document.addEventListener("DOMContentLoaded", () => {
       dogSound.play();
     });
   });
+
+
 });
+
 

@@ -532,15 +532,42 @@ body.dark-mode {
   right: 20px;
   z-index: 999;
   padding: 0;
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.theme-icon img {
-  width: 32px;
-  height: 32px;
+.theme-icon:hover, .volume-icon:hover{
+  transform: scale(1.06);
+}
+
+.theme-icon img, .volume-icon img {
+  width: 36px;
+  height: 36px;
   image-rendering: pixelated;
+  border-radius: 2px;
 }
 
-/* === 12. Project Title Styling === */
+
+
+
+
+
+/* === 12. Theme Toggle Button === */
+
+.volume-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  padding: 0;
+  z-index: 9999; 
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+
+
+/* === 13. Project Title Styling === */
 
 #project-h1 {
   text-align: center;
