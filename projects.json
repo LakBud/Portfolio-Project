@@ -3,7 +3,7 @@
       "title": "Buddo's Portfolio",
       "date": "9/6/2025",
       "description": "The one you are looking at!",
-      "image": "ASSETS/placeholder.webp",
+      "image": "ASSETS/images/placeholder.webp",
       "skills": ["HTML", "CSS", "JavaScript", "JSON"],
       "link": "https://buddo.vercel.app/"
     }
