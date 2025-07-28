@@ -1,25 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>BuddoProjects</title>
-    <link rel="stylesheet" href = "style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <link rel="icon" href="ASSETS/buddo.webp" type="ASSETS/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>BuddoProjects</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link rel="icon" href="ASSETS/images/buddo.webp" type="image/webp" />
 </head>
 <body>
-    
   <header class="title">
     <button id="themeToggle" class="theme-icon" aria-label="Toggle dark/light theme">
-      <img id="themeIcon" src="ASSETS/moon.webp" alt="Toggle Theme" width="40" />
+      <img id="themeIcon" src="ASSETS/images/moon.webp" alt="Toggle Theme" width="40" />
     </button>
 
     <button id="volumeToggle" class="volume-icon" aria-label="Toggle volume on/of">
-      <img id="volumeIcon" src="ASSETS/volume.webp" alt="Toggle Volume" width="40" />
+      <img id="volumeIcon" src="ASSETS/images/volume.webp" alt="Toggle Volume" width="40" />
     </button>
-  
-    <img src="ASSETS/buddo.webp" alt="Buddo Logo" class="logo">
+
+    <img src="ASSETS/images/buddo.webp" alt="Buddo Logo" class="logo" />
 
     <div class="title-text">
       <h1>Buddo</h1>
@@ -27,18 +26,14 @@
     </div>
   </header>
 
-<main>
+  <main>
+    <section id="projects">
+      <h1 id="project-h1">My Projects!</h1>
+      <div class="project-row" id="project-list"></div>
+    </section>
+  </main>
 
-
-<section id="projects">
-    <h1 id="project-h1">My Projects!</h1>
-    <div class="project-row" id="project-list"></div>
-  </section>
-
-</main>
-
-
-<footer>
+  <footer>
     <div class="footer-inner">
       <div class="fixed-social-icons">
         <!-- YouTube -->
@@ -47,7 +42,7 @@
             <path d="M23.498 6.186a2.997 2.997 0 0 0-2.112-2.12C19.228 3.5 12 3.5 12 3.5s-7.228 0-9.386.566A2.997 2.997 0 0 0 .502 6.186C0 8.35 0 12 0 12s0 3.65.502 5.814a2.997 2.997 0 0 0 2.112 2.12C4.772 20.5 12 20.5 12 20.5s7.228 0 9.386-.566a2.997 2.997 0 0 0 2.112-2.12C24 15.65 24 12 24 12s0-3.65-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
           </svg>
         </a>
-  
+
         <!-- X (Twitter) -->
         <a href="https://x.com/BuddoYap" target="_blank" title="X" class="x-icon">
           <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor">
@@ -55,7 +50,7 @@
                 M82.1,92.2h10.6L38.3,29.2H27.1L82.1,92.2z"/>
           </svg>
         </a>
-  
+
         <!-- GitHub -->
         <a href="https://github.com/LakBud" target="_blank" title="GitHub" class="github-icon">
           <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -69,25 +64,22 @@
           </svg>
         </a>
       </div>
-  
+
       <p class="footer-text">Buddo - Copyright © 2025</p>
-  
+
       <div class="footer-spacer"></div>
     </div>
   </footer>
 
-
-<!-- Scripts-->
-<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
-<script>
-  Sortable.create(document.querySelector(".goals ol"), {
-    animation: 150
-  });
-</script>
-<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
- 
-<script src="scripts.js" defer></script>
-
+  <!-- Scripts-->
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+  <script>
+    Sortable.create(document.querySelector(".goals ol"), {
+      animation: 150
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+  <script src="scripts.js" defer></script>
 </body>
 </html>

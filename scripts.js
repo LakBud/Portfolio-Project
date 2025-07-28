@@ -51,44 +51,37 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   }
 
+  // === DARK/LIGHT TOGGLE ===
+  const toggleBtn = document.getElementById("themeToggle");
+  const themeIcon = document.getElementById("themeIcon");
 
-// === DARK/LIGHT TOGGLE ===
-const toggleBtn = document.getElementById("themeToggle");
-const themeIcon = document.getElementById("themeIcon");
-
-
-const themeSound = new Howl({
-  src: ['ASSETS/woosh.mp3'],
-  volume: 0.6,
-  preload: true
-});
-
-if (toggleBtn && themeIcon) {
-  toggleBtn.addEventListener("click", () => {
-
-    document.body.classList.toggle("dark-mode");
-    const isDark = document.body.classList.contains("dark-mode");
-
-
-    themeIcon.src = isDark ? "ASSETS/sun.webp" : "ASSETS/moon.webp";
-
-
-    localStorage.setItem("theme", isDark ? "dark" : "light");
-
-
-    themeSound.play();
+  const themeSound = new Howl({
+    src: ['ASSETS/sounds/woosh.mp3'],
+    volume: 0.6,
+    preload: true
   });
 
-  // Restore saved theme on page load
-  const savedTheme = localStorage.getItem("theme");
-  if (savedTheme === "dark") {
-    document.body.classList.add("dark-mode");
-    themeIcon.src = "ASSETS/sun.webp";
-  } else {
-    themeIcon.src = "ASSETS/moon.webp";
-  }
-}
+  if (toggleBtn && themeIcon) {
+    toggleBtn.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      const isDark = document.body.classList.contains("dark-mode");
 
+      themeIcon.src = isDark ? "ASSETS/images/sun.webp" : "ASSETS/images/moon.webp";
+
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+
+      themeSound.play();
+    });
+
+    // Restore saved theme on page load
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "dark") {
+      document.body.classList.add("dark-mode");
+      themeIcon.src = "ASSETS/images/sun.webp";
+    } else {
+      themeIcon.src = "ASSETS/images/moon.webp";
+    }
+  }
 
   // === PROJECT FETCH ===
   fetch("projects.json")
@@ -100,7 +93,7 @@ if (toggleBtn && themeIcon) {
       projects.forEach(project => {
         const article = document.createElement("article");
         article.classList.add("project-container");
-      
+
         article.innerHTML = `
           <img src="${project.image}" alt="${project.title}" class="project-img" />
           <div class="project-txt">
@@ -171,7 +164,7 @@ if (toggleBtn && themeIcon) {
     backDelay: 1500,
     loop: true,
     smartBackspace: true,
-    showCursor: false 
+    showCursor: false
   });
 
   // === CLEAR FORM ===
@@ -182,68 +175,62 @@ if (toggleBtn && themeIcon) {
     });
   }
 
-
   // === TOGGLE VOLUME ===
   const volumeToggle = document.getElementById('volumeToggle');
   const volumeIcon = document.getElementById('volumeIcon');
-  
 
   const toggleClickSound = new Howl({
-    src: ['ASSETS/volume-click.mp3'],
+    src: ['ASSETS/sounds/volume-click.mp3'],
     volume: 0.5
   });
-  
+
   let soundOn = true;
-  
 
   const savedSoundOn = localStorage.getItem('soundOn');
   if (savedSoundOn !== null) {
     soundOn = savedSoundOn === 'true';
     Howler.mute(!soundOn);
-    volumeIcon.src = soundOn ? 'ASSETS/volume.webp' : 'ASSETS/volume-muted.webp';
+    volumeIcon.src = soundOn ? 'ASSETS/images/volume.webp' : 'ASSETS/images/volume-muted.webp';
     volumeIcon.alt = soundOn ? 'Volume On' : 'Volume Off';
   } else {
     Howler.mute(false);
-    volumeIcon.src = 'ASSETS/volume.webp';
+    volumeIcon.src = 'ASSETS/images/volume.webp';
     volumeIcon.alt = 'Volume On';
   }
-  
+
   volumeToggle.addEventListener('click', () => {
     soundOn = !soundOn;
-  
+
     Howler.mute(!soundOn);
-  
-    volumeIcon.src = soundOn ? 'ASSETS/volume.webp' : 'ASSETS/volume-muted.webp';
+
+    volumeIcon.src = soundOn ? 'ASSETS/images/volume.webp' : 'ASSETS/images/volume-muted.webp';
     volumeIcon.alt = soundOn ? 'Volume On' : 'Volume Off';
-  
+
     localStorage.setItem('soundOn', soundOn);
-  
 
     if (soundOn) {
       toggleClickSound.play();
     }
   });
-  
-  
 
   // === SOUND EFFECTS ===
   const hoverSound = new Howl({
-    src: ['ASSETS/hover.mp3'],
+    src: ['ASSETS/sounds/hover.mp3'],
     volume: 0.3
   });
   const clickSound = new Howl({
-    src: ['ASSETS/click.mp3'],
+    src: ['ASSETS/sounds/click.mp3'],
     volume: 0.6
   });
 
   document.querySelectorAll('a, button').forEach(el => {
     el.addEventListener('mouseenter', () => hoverSound.play());
-    if (el.id === 'nextBtn' || el.id === 'prevBtn'  || el.id === 'themeToggle'  || el.id === 'volumeToggle') return;
+    if (el.id === 'nextBtn' || el.id === 'prevBtn' || el.id === 'themeToggle' || el.id === 'volumeToggle') return;
     el.addEventListener('click', () => clickSound.play());
   });
 
   const slideSound = new Howl({
-    src: ['ASSETS/slide.mp3'],
+    src: ['ASSETS/sounds/slide.mp3'],
     volume: 0.3
   });
 
@@ -253,7 +240,7 @@ if (toggleBtn && themeIcon) {
   if (nextBtn) nextBtn.addEventListener('click', () => slideSound.play());
 
   const dogSound = new Howl({
-    src: ['ASSETS/dog.mp3'], 
+    src: ['ASSETS/sounds/dog.mp3'],
     volume: 0.5,
     loop: false
   });
@@ -264,7 +251,4 @@ if (toggleBtn && themeIcon) {
     });
   });
 
-
 });
-
-
