@@ -172,6 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+
   // === SOUND EFFECTS ===
 
   const hoverSound = new Howl({
@@ -216,3 +217,4 @@ document.addEventListener("DOMContentLoaded", () => {
       dogSound.play();
     });
   });
+
