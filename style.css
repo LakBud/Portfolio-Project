@@ -26,6 +26,11 @@ main {
 
 /* === 1. Header === */
 
+header {
+  height: 150px;      
+  overflow: hidden;  
+}
+
 header.title {
   background: linear-gradient(135deg, #BFA27A, #8B5E3C);
   color: white;
@@ -169,6 +174,7 @@ section h2 {
   margin-bottom: 15px;
 }
 
+
 /* Progress Bars */
 
 .progress-bar {
@@ -177,12 +183,16 @@ section h2 {
   overflow: hidden;
 }
 
+
+
 .progress {
   height: 100%;
   background: linear-gradient(90deg, #9f693f, #cdb088);
   width: 0;
-  transition: width 1.5s ease;
+  transition: width 2.5s ease;
+  cursor: grab;
 }
+
 
 /* Slider */
 
@@ -268,6 +278,10 @@ ol#goals-list {
   margin-bottom: 15px;
 }
 
+ol#goals-list:hover {
+cursor: pointer;
+}
+
 /* Buttons */
 
 button {
@@ -284,7 +298,7 @@ button {
 }
 
 button:hover {
-  background-color: #6C4C34;
+  background-color: var(--highlight-color);
 }
 
 a button {
@@ -496,25 +510,27 @@ footer {
 /* === 10. Dark/Light mode toggle variables === */
 
 :root {
-  --bg-color: #F9F5EC;
-  --text-color: #2C1E1A;
-  --accent-color: #A06534;
-  --section-bg: #FFFFFF;
-  --card-bg: #FFEFD5;
-  --border-color: #3A2F2A;
-  --outline-color: #FFF8F1;
-  --highlight-color: #A06534;
+  --bg-color:  #f4eee5;     
+  --text-color: #483127;     
+  --accent-color: #A06534;   
+  --section-bg: #fef5e4;    
+  --card-bg: #f4dcc9;        
+  --border-color: #4A3A33;  
+  --outline-color: #E9E0D8;   
+  --highlight-color: #C88A5A;
 }
 
 body.dark-mode {
-  --bg-color: #0E0E0E;
-  --text-color: #F0E6DC;
-  --section-bg: #1A1A1A;
-  --card-bg: #2A2420;
-  --border-color: #3B3B3B;
-  --outline-color: #26221F;
-  --highlight-color: #C38A5F;
+  --bg-color: #12100F;     
+  --text-color: #F3EAE3;     
+  --section-bg: #1D1A18;   
+  --card-bg: #27221F;       
+  --border-color: #3A3633;  
+  --outline-color: #1B1917; 
+  --highlight-color: #D4A173;
 }
+
+
 
 /* === 11. Theme Toggle Button === */
 
@@ -528,6 +544,11 @@ body.dark-mode {
   transition: transform 0.3s ease;
   image-rendering: pixelated;
   border-radius: 2px;
+
+}
+
+#themeToggle, #volumeToggle {
+  background-color: transparent;
 }
 
 .theme-icon {
@@ -549,9 +570,11 @@ body.dark-mode {
 
 .theme-icon img,
 .volume-icon img {
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
 }
+
+
 
 /* === 13. Project Title Styling === */
 
@@ -736,5 +759,9 @@ body.dark-mode {
     white-space: normal;
     text-align: center;
     padding: 8px 0;
+  }
+
+  .progress-bar {
+    height: 30px; 
   }
 }

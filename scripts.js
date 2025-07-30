@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+
   // === IMAGE SLIDER ===
   const slides = document.querySelectorAll(".slides img");
   let slideIndex = 0;
@@ -37,6 +38,41 @@ document.addEventListener("DOMContentLoaded", () => {
     changeSlide(-1);
     intervalID = setInterval(() => changeSlide(1), 5000);
   };
+
+  // === DRAG INTEREST BARS ===
+
+  document.querySelectorAll('.interests ul').forEach(list => {
+    
+    list.querySelectorAll('.progress-bar').forEach(bar => {
+      const progress = bar.querySelector('.progress');
+      let dragging = false;
+  
+      function updateWidth(clientX) {
+        const rect = bar.getBoundingClientRect();
+        let percent = ((clientX - rect.left) / rect.width) * 100;
+        percent = Math.min(Math.max(percent, 0), 100);
+        progress.style.width = percent + '%';
+      }
+  
+      progress.addEventListener('mousedown', () => dragging = true);
+      progress.addEventListener('touchstart', () => dragging = true);
+  
+      window.addEventListener('mouseup', () => dragging = false);
+      window.addEventListener('touchend', () => dragging = false);
+  
+      window.addEventListener('mousemove', e => {
+        if (!dragging) return;
+        updateWidth(e.clientX);
+      });
+  
+      progress.addEventListener('touchmove', e => {
+        if (!dragging) return;
+        e.preventDefault(); 
+        updateWidth(e.touches[0].clientX);
+      }, { passive: false });
+      
+    });
+  });
 
   // === SHUFFLE GOALS LIST ===
   const goalList = document.getElementById("goals-list");
@@ -119,6 +155,8 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     })
     .catch(error => console.error("Failed to load projects:", error));
+
+  
 
   // === ANIMATION ===
   const sections = document.querySelectorAll("section");
@@ -250,5 +288,11 @@ document.addEventListener("DOMContentLoaded", () => {
       dogSound.play();
     });
   });
+
+  
+
+  
+  
+    
 
 });
