@@ -18,6 +18,3 @@ Just open index.html in your browser. No build tools or frameworks required.
 
 Future Plans
 Add more interactive features and polish UI
-
-PS! 
-Yes I am aware of the amount of commits I have, Il continue the commits within bigger updates from now on.

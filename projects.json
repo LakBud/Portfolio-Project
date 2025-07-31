@@ -1,10 +1,19 @@
 [
-    {
-      "title": "Buddo's Portfolio",
-      "date": "9/6/2025",
-      "description": "The one you are looking at!",
-      "image": "ASSETS/images/placeholder.webp",
-      "skills": ["HTML", "CSS", "JavaScript", "JSON"],
-      "link": "https://buddo.vercel.app/"
-    }
+  {
+    "title": "Buddo's Portfolio",
+    "date": "9/6/2025",
+    "description": "The one you are looking at!",
+    "image": "ASSETS/images/website.webp",
+    "skills": ["HTML", "CSS", "JavaScript", "JSON"],
+    "link": "https://buddo.vercel.app/"
+  },
+
+  {
+    "title": "Buddo's Portfolio",
+    "date": "9/6/2025",
+    "description": "The one you are looking at!",
+    "image": "ASSETS/images/website.webp",
+    "skills": ["HTML", "CSS", "JavaScript", "JSON"],
+    "link": "https://buddo.vercel.app/"
+  }
 ]
