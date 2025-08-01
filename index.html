@@ -6,81 +6,128 @@
     <title>Buddo</title>
     <link rel="stylesheet" href="style.css" />
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
-    <link rel="icon" href="ASSETS/images/buddo.webp" type="image/webp" />
+    <link rel="icon" href="ASSETS/images/buddo.webp" type="image/webp" sizes="32x32" />
   </head>
 
   <body>
-    <header class="title">
-      <button id="themeToggle" class="theme-icon" aria-label="Toggle dark/light theme">
-        <img id="themeIcon" src="ASSETS/images/moon.webp" alt="Toggle Theme" width="40" />
-      </button>
+    <header class="title" role="banner">
+      <!-- Group the two toggle buttons inside a nav landmark for accessibility -->
+      <nav aria-label="Settings and controls" class="header-controls">
+        <button id="themeToggle" class="theme-icon" aria-label="Toggle dark or light theme" aria-pressed="false" type="button">
+          <img id="themeIcon" src="ASSETS/images/moon.webp" alt="Toggle Theme" width="40" height="40" loading="lazy" />
+        </button>
 
-      <button id="volumeToggle" class="volume-icon" aria-label="Toggle volume on/of">
-        <img id="volumeIcon" src="ASSETS/images/volume.webp" alt="Toggle Volume" width="40" />
-      </button>
+        <button id="volumeToggle" class="volume-icon" aria-label="Toggle volume on or off" aria-pressed="true" type="button">
+          <img id="volumeIcon" src="ASSETS/images/volume.webp" alt="Toggle Volume" width="40" height="40" loading="lazy" />
+        </button>
+      </nav>
 
-      <img src="ASSETS/images/buddo.webp" alt="Buddo Logo" class="logo" />
+      <img src="ASSETS/images/buddo.webp" alt="Buddo Logo" class="logo" width="80" height="80" loading="lazy" />
 
       <div class="title-text">
         <h1>Buddo</h1>
-        <p id="typed-subtitle"></p>
+        <p id="typed-subtitle" aria-live="polite" aria-atomic="true"></p>
       </div>
     </header>
 
     <main>
-      <section class="about">
-        <h2>About Me</h2>
+      <section class="about" aria-labelledby="about-title">
+        <h2 id="about-title">About Me</h2>
         <p>
-          An up-coming Web Developer. I am nationally Norwegian and ethnically Kashmiri. Web Developing is a passion of mine which
-          might be a part of my career. Currently, I can do HTML, CSS and Vanilla JS in an intermediate level.
+          An up-and-coming Web Developer. I am nationally Norwegian and ethnically Kashmiri. Web development is a passion of mine
+          and might become part of my career. Currently, I have intermediate skills in HTML, CSS, and Vanilla JS.
         </p>
       </section>
 
       <div class="interests-slider-container">
-        <section class="interests">
-          <h2>Interests</h2>
+        <section class="interests" aria-labelledby="interests-title">
+          <h2 id="interests-title">Interests</h2>
           <ul>
             <li class="interest-item">
               <p>💻 Web Development</p>
-              <div class="progress-bar"><div class="progress" style="--progress-width: 100%"></div></div>
+              <div
+                class="progress-bar"
+                role="progressbar"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="100"
+                aria-label="Web Development skill level"
+              >
+                <div class="progress" style="--progress-width: 100%" aria-hidden="true"></div>
+              </div>
             </li>
             <li class="interest-item">
-              <p>♟️ Chess (1100 EL0)</p>
-              <div class="progress-bar"><div class="progress" style="--progress-width: 70%"></div></div>
+              <p>♟️ Chess (1100 ELO)</p>
+              <div
+                class="progress-bar"
+                role="progressbar"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="70"
+                aria-label="Chess skill level"
+              >
+                <div class="progress" style="--progress-width: 70%" aria-hidden="true"></div>
+              </div>
             </li>
             <li class="interest-item">
-              <p>⚽ Fotball</p>
-              <div class="progress-bar"><div class="progress" style="--progress-width: 95%"></div></div>
+              <p>⚽ Football</p>
+              <div
+                class="progress-bar"
+                role="progressbar"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="95"
+                aria-label="Football skill level"
+              >
+                <div class="progress" style="--progress-width: 95%" aria-hidden="true"></div>
+              </div>
             </li>
             <li class="interest-item">
               <p>🎤 TV Shows</p>
-              <div class="progress-bar"><div class="progress" style="--progress-width: 60%"></div></div>
+              <div
+                class="progress-bar"
+                role="progressbar"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="60"
+                aria-label="TV Shows interest level"
+              >
+                <div class="progress" style="--progress-width: 60%" aria-hidden="true"></div>
+              </div>
             </li>
             <li class="interest-item">
               <p>🕹️ Games</p>
-              <div class="progress-bar"><div class="progress" style="--progress-width: 50%"></div></div>
+              <div
+                class="progress-bar"
+                role="progressbar"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="50"
+                aria-label="Games interest level"
+              >
+                <div class="progress" style="--progress-width: 50%" aria-hidden="true"></div>
+              </div>
             </li>
           </ul>
         </section>
 
-        <div class="slider">
+        <div class="slider" aria-label="Image slider of interests" role="region" tabindex="0">
           <div class="slides">
-            <img class="slide" src="ASSETS/images/chess.webp" alt="chess" />
-            <img class="slide" src="ASSETS/images/web.webp" alt="Web" />
-            <img class="slide" src="ASSETS/images/buddo.webp" alt="dog" />
+            <img class="slide" src="ASSETS/images/chess.webp" alt="Chess game" loading="lazy" />
+            <img class="slide" src="ASSETS/images/web.webp" alt="Web development" loading="lazy" />
+            <img class="slide" src="ASSETS/images/buddo.webp" alt="Buddo dog mascot" loading="lazy" />
           </div>
-          <button id="prevBtn" class="prev" onclick="prevSlide()">&#60;</button>
-          <button id="nextBtn" class="next" onclick="nextSlide()">&#62;</button>
+          <button id="prevBtn" class="prev" onclick="prevSlide()" aria-label="Previous slide" type="button">&#60;</button>
+          <button id="nextBtn" class="next" onclick="nextSlide()" aria-label="Next slide" type="button">&#62;</button>
         </div>
       </div>
 
       <div class="goals-project-container">
-        <section class="goals">
-          <h2>Goals</h2>
-          <p>My goal is being capable of Advanced Fullstack Web Development</p>
-          <br />
+        <section class="goals" aria-labelledby="goals-title">
+          <h2 id="goals-title">Goals</h2>
+          <p>My goal is to become capable of Advanced Fullstack Web Development</p>
           <p>This includes:</p>
-          <ol id="goals-list">
+          <ol id="goals-list" aria-label="List of development goals">
             <li>Typescript</li>
             <li>React <strong>(Drag me!)</strong></li>
             <li>Node.JS + Express.JS</li>
@@ -88,59 +135,59 @@
             <li>Maybe Tailwind CSS?</li>
             <li>MySQL/MongoDB</li>
           </ol>
-          <button onclick="shuffleGoals()">Shuffle?</button>
+          <button type="button" onclick="shuffleGoals()" aria-label="Shuffle goals list">Shuffle?</button>
         </section>
 
-        <section class="projectIntro">
-          <h2>Projects</h2>
+        <section class="projectIntro" aria-labelledby="projects-title">
+          <h2 id="projects-title">Projects</h2>
           <p>My projects can be seen through this button:</p>
-          <br />
           <a href="https://buddo.vercel.app/projects.html">
-            <button>Projects</button>
+            <button type="button" aria-label="View Projects page">Projects</button>
           </a>
-          <br /><br /><br />
-          <img src="ASSETS/images/buddo.webp" alt="Buddo Logo" class="logo" />
+          <img src="ASSETS/images/buddo.webp" alt="Buddo Logo" class="logo" width="80" height="80" loading="lazy" />
         </section>
       </div>
 
-      <section class="contact">
-        <h2>Contact</h2>
+      <section class="contact" aria-labelledby="contact-title">
+        <h2 id="contact-title">Contact</h2>
         <p id="result">If you would like to get in touch with me, you can reach me via email or socials</p>
-        <br />
 
         <div class="contact-container">
-          <form id="contactForm" action="https://formspree.io/f/xjkrnlay" method="POST">
-            <p id="formMessage" role="alert" aria-live="polite">Email (reCAPTCHA):</p>
-            <br />
-            <input type="text" name="name" class="textbox" placeholder="Your Name" required /><br /><br />
-            <input type="email" name="email" class="textbox" placeholder="Your Email" required /><br /><br />
-            <textarea name="message" class="textarea-box" placeholder="Your Message" required></textarea><br /><br />
+          <form id="contactForm" action="https://formspree.io/f/xjkrnlay" method="POST" aria-describedby="formMessage">
+            <p id="formMessage" role="alert" aria-live="polite">Email:</p>
+            <input type="text" name="name" class="textbox" placeholder="Your Name" required aria-required="true" />
+            <input type="email" name="email" class="textbox" placeholder="Your Email" required aria-required="true" />
+            <textarea name="message" class="textarea-box" placeholder="Your Message" required aria-required="true"></textarea>
             <input type="text" name="_honey" style="display: none" />
             <button type="submit" id="sendEmail">Send</button>
           </form>
 
-          <!-- Social links -->
-          <div class="socialBox">
+          <div class="socialBox" aria-label="Social media links">
             <p><strong>My Socials:</strong></p>
-            <br />
-            <a href="https://www.youtube.com/@Budosso" title="YouTube">YouTube</a><br />
-            <a href="https://x.com/BuddoYap" title="X">Twitter</a><br />
-            <a href="https://github.com/LakBud" title="GitHub">GitHub</a>
+            <a href="https://www.youtube.com/@Budosso" title="YouTube" target="_blank" rel="noopener noreferrer">YouTube</a><br />
+            <a href="https://x.com/BuddoYap" title="X" target="_blank" rel="noopener noreferrer">Twitter</a><br />
+            <a href="https://github.com/LakBud" title="GitHub" target="_blank" rel="noopener noreferrer">GitHub</a>
           </div>
         </div>
       </section>
 
       <p style="text-align: center; font-size: 1rem; padding: 10px">
-        For email: If reCAPTCHA has been completed, I'll get back to you as soon as possible!<br /><br /><br />
+        For email: If reCAPTCHA has been completed, I'll get back to you as soon as possible!
       </p>
     </main>
 
     <footer>
       <div class="footer-inner">
-        <div class="fixed-social-icons">
+        <div class="fixed-social-icons" aria-label="Footer social media links">
           <!-- YouTube -->
-          <a href="https://www.youtube.com/@Budosso" target="_blank" title="YouTube" class="youtube-icon">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+          <a
+            href="https://www.youtube.com/@Budosso"
+            target="_blank"
+            title="YouTube"
+            class="youtube-icon"
+            rel="noopener noreferrer"
+          >
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true" focusable="false">
               <path
                 d="M23.498 6.186a2.997 2.997 0 0 0-2.112-2.12C19.228 3.5 12 3.5 12 3.5s-7.228 0-9.386.566A2.997 2.997 0 0 0 .502 6.186C0 8.35 0 12 0 12s0 3.65.502 5.814a2.997 2.997 0 0 0 2.112 2.12C4.772 20.5 12 20.5 12 20.5s7.228 0 9.386-.566a2.997 2.997 0 0 0 2.112-2.12C24 15.65 24 12 24 12s0-3.65-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
               />
@@ -148,26 +195,42 @@
           </a>
 
           <!-- X (Twitter) -->
-          <a href="https://x.com/BuddoYap" target="_blank" title="X" class="x-icon">
-            <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor">
+          <a href="https://x.com/BuddoYap" target="_blank" title="X" class="x-icon" rel="noopener noreferrer">
+            <svg
+              viewBox="0 0 120 120"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="currentColor"
+              aria-hidden="true"
+              focusable="false"
+            >
               <path
                 d="M87.6,18.5h19.2L72.1,54.5l37.9,47H81.3L56.9,77.2L29.7,101.5H10.4l36.1-39.2L10,18.5h39.3l21.1,23.7L87.6,18.5z
-                M82.1,92.2h10.6L38.3,29.2H27.1L82.1,92.2z"
+                  M82.1,92.2h10.6L38.3,29.2H27.1L82.1,92.2z"
               />
             </svg>
           </a>
 
           <!-- GitHub -->
-          <a href="https://github.com/LakBud" target="_blank" title="GitHub" class="github-icon">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <a href="https://github.com/LakBud" target="_blank" title="GitHub" class="github-icon" rel="noopener noreferrer">
+            <svg
+              viewBox="0 0 24 24"
+              width="24"
+              height="24"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              focusable="false"
+            >
               <path
                 d="M12 0.5C5.37 0.5 0 5.87 0 12.5c0 5.29 3.438 9.773 8.207 11.364.6.113.793-.26.793-.577 
-                     0-.285-.01-1.04-.016-2.04-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.082-.73.082-.73 
-                     1.205.085 1.84 1.237 1.84 1.237 1.07 1.835 2.807 1.305 3.492.998.108-.775.418-1.305.762-1.605-2.665-.3-5.467-1.332-5.467-5.93 
-                     0-1.31.468-2.38 1.236-3.22-.124-.303-.536-1.523.117-3.176 0 0 1.008-.322 3.3 1.23.96-.267 1.98-.4 3-.405 1.02.005 
-                     2.04.138 3 .405 2.29-1.552 3.297-1.23 3.297-1.23.655 1.653.243 2.873.12 3.176.77.84 1.236 1.91 1.236 3.22 
-                     0 4.61-2.807 5.628-5.48 5.922.43.37.823 1.102.823 2.222 0 1.606-.015 2.903-.015 3.293 0 .32.192.694.8.576C20.565 
-                     22.27 24 17.79 24 12.5 24 5.87 18.63.5 12 .5z"
+                    0-.285-.01-1.04-.016-2.04-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.082-.73.082-.73 
+                    1.205.085 1.84 1.237 1.84 1.237 1.07 1.835 2.807 1.305 3.492.998.108-.775.418-1.305.762-1.605-2.665-.3-5.467-1.332-5.467-5.93 
+                    0-1.31.468-2.38 1.236-3.22-.124-.303-.536-1.523.117-3.176 0 0 1.008-.322 3.3 1.23.96-.267 1.98-.4 3-.405 1.02.005 
+                    2.04.138 3 .405 2.29-1.552 3.297-1.23 3.297-1.23.655 1.653.243 2.873.12 3.176.77.84 1.236 1.91 1.236 3.22 
+                    0 4.61-2.807 5.628-5.48 5.922.43.37.823 1.102.823 2.222 0 1.606-.015 2.903-.015 3.293 0 .32.192.694.8.576C20.565 
+                    22.27 24 17.79 24 12.5 24 5.87 18.63.5 12 .5z"
               />
             </svg>
           </a>

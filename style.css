@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 
 /* === 0. Reset + Global Styles === */
-
 * {
   margin: 0;
   padding: 0;
@@ -58,15 +57,14 @@ header.title {
 header.title h1 {
   font-size: 1.5rem;
   letter-spacing: 1px;
-  margin: 0;
   color: white;
 }
 
 #typed-subtitle {
-  display: inline;
   position: relative;
   white-space: normal;
   word-break: break-word;
+  display: inline;
 }
 
 #typed-subtitle::after {
@@ -99,7 +97,6 @@ section {
   image-rendering: pixelated;
   transition: opacity 0.8s ease, transform 0.8s ease;
   width: 100%;
-  max-width: 100%;
   overflow-x: hidden;
 }
 
@@ -119,7 +116,6 @@ section:hover {
   transform: scale(1.02);
 }
 
-/* Section animation (fade + slide) */
 .section-hidden {
   opacity: 0;
   transform: translateY(30px);
@@ -131,7 +127,6 @@ section:hover {
   transform: translateY(0);
 }
 
-/* Child elements (staggered scale-in) */
 .section-child {
   opacity: 0;
   transform: scale(0.95);
@@ -169,8 +164,8 @@ section h2 {
 
 .interests ul {
   list-style: none;
-  padding-left: 0;
   font-size: 0.9rem;
+  padding-left: 0;
 }
 
 .interest-item {
@@ -197,7 +192,7 @@ section h2 {
   font-weight: bold;
   text-align: right;
   padding-right: 6px;
-  line-height: 20px; /* vertically center text */
+  line-height: 20px;
 }
 
 /* Slider */
@@ -262,7 +257,6 @@ section h2 {
 .slider .prev {
   left: 10px;
 }
-
 .slider .next {
   right: 10px;
 }
@@ -278,6 +272,15 @@ section h2 {
 .goals,
 .projectIntro {
   flex: 1;
+}
+
+.projectIntro button {
+  margin-top: 20px;
+}
+
+.projectIntro .logo {
+  display: block;
+  margin: 40px auto;
 }
 
 ol#goals-list {
@@ -351,8 +354,32 @@ a button {
   justify-content: center;
 }
 
+#contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 300px;
+  margin-top: 30px;
+}
+
+#contactForm button {
+  margin: 0px;
+}
+
+#contactForm input,
+#contactForm textarea,
+#contactForm button {
+  width: 100%;
+}
+
 .socialBox {
   text-align: center;
+  margin-top: 30px;
+}
+
+.socialBox a {
+  margin-top: 20px;
+  font-size: 1rem;
 }
 
 /* Text Inputs & Textareas */
@@ -443,7 +470,7 @@ footer {
 }
 
 .fixed-social-icons a:hover {
-  background-color: #ffffff;
+  background-color: #fff;
   border-radius: 2px;
 }
 
@@ -454,7 +481,6 @@ footer {
 .fixed-social-icons .youtube-icon svg {
   fill: #ff0000;
 }
-
 .fixed-social-icons .x-icon svg,
 .fixed-social-icons .github-icon svg {
   fill: #000;
@@ -526,7 +552,7 @@ footer {
   --bg-color: #f4eee5;
   --text-color: #483127;
   --accent-color: #a06534;
-  --section-bg: #fef5e4;
+  --section-bg: #fffcf8;
   --card-bg: #f4dcc9;
   --border-color: #4a3a33;
   --outline-color: #e9e0d8;
@@ -543,7 +569,7 @@ body.dark-mode {
   --highlight-color: #d4a173;
 }
 
-/* === 11. Theme Toggle Button === */
+/* === 11. Theme & Volume Toggle Buttons === */
 
 .theme-icon,
 .volume-icon {
@@ -557,21 +583,18 @@ body.dark-mode {
   border-radius: 2px;
 }
 
-#themeToggle,
-#volumeToggle {
-  background-color: transparent;
-}
-
-.theme-icon {
+#themeToggle {
   top: 20px;
   right: 20px;
   z-index: 999;
+  background-color: transparent;
 }
 
-.volume-icon {
+#volumeToggle {
   top: 20px;
   left: 20px;
   z-index: 9999;
+  background-color: transparent;
 }
 
 .theme-icon:hover,
@@ -633,7 +656,7 @@ body.dark-mode {
   flex-direction: column;
   justify-content: space-between;
   text-align: center;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   border-radius: 0;
 }
 
@@ -754,23 +777,6 @@ body.dark-mode {
   .project-p,
   .interests ul,
   .skills {
-    font-size: 0.85rem;
-  }
-
-  button {
-    font-size: 0.7rem;
-  }
-
-  #typed-subtitle {
-    font-size: 0.9rem;
-    line-height: 2;
-    letter-spacing: 1.2px;
-    white-space: normal;
-    text-align: center;
-    padding: 8px 0;
-  }
-
-  .progress-bar {
-    height: 30px;
+    font-size: 0.8rem;
   }
 }
