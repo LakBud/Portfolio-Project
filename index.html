@@ -11,7 +11,6 @@
 
   <body>
     <header class="title" role="banner">
-      <!-- Group the two toggle buttons inside a nav landmark for accessibility -->
       <nav aria-label="Settings and controls" class="header-controls">
         <button id="themeToggle" class="theme-icon" aria-label="Toggle dark or light theme" aria-pressed="false" type="button">
           <img id="themeIcon" src="ASSETS/images/moon.webp" alt="Toggle Theme" width="40" height="40" loading="lazy" />
@@ -20,6 +19,7 @@
         <button id="volumeToggle" class="volume-icon" aria-label="Toggle volume on or off" aria-pressed="true" type="button">
           <img id="volumeIcon" src="ASSETS/images/volume.webp" alt="Toggle Volume" width="40" height="40" loading="lazy" />
         </button>
+        <button id="toggleClearBtn">X</button>
       </nav>
 
       <img src="ASSETS/images/buddo.webp" alt="Buddo Logo" class="logo" width="80" height="80" loading="lazy" />
@@ -29,6 +29,8 @@
         <p id="typed-subtitle" aria-live="polite" aria-atomic="true"></p>
       </div>
     </header>
+
+    <div id="textParticles"></div>
 
     <main>
       <section class="about" aria-labelledby="about-title">
@@ -126,6 +128,7 @@
         <section class="goals" aria-labelledby="goals-title">
           <h2 id="goals-title">Goals</h2>
           <p>My goal is to become capable of Advanced Fullstack Web Development</p>
+          <br />
           <p>This includes:</p>
           <ol id="goals-list" aria-label="List of development goals">
             <li>Typescript</li>
@@ -171,7 +174,7 @@
         </div>
       </section>
 
-      <p style="text-align: center; font-size: 1rem; padding: 10px">
+      <p id="emailP" style="text-align: center; font-size: 1rem; padding: 10px">
         For email: If reCAPTCHA has been completed, I'll get back to you as soon as possible!
       </p>
     </main>
@@ -243,6 +246,9 @@
     </footer>
 
     <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
     <script>
       Sortable.create(document.querySelector(".goals ol"), {
@@ -251,6 +257,8 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
-    <script src="scripts.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+
+    <script type="module" src="js/main.js" defer></script>
   </body>
 </html>
