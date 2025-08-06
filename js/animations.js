@@ -79,7 +79,7 @@ import * as THREE from "https://unpkg.com/three@0.160.0/build/three.module.js";
 export function init3DBackground() {
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(75, window.innerWidth / document.documentElement.scrollHeight, 0.1, 1000);
-  camera.position.z = 150; // move camera back to see more
+  camera.position.z = 100; // move camera back to see more
 
   const renderer = new THREE.WebGLRenderer({ alpha: true });
   renderer.setSize(window.innerWidth, document.documentElement.scrollHeight);
@@ -106,12 +106,13 @@ export function init3DBackground() {
     new THREE.TorusGeometry(3, 1, 8, 16),
     new THREE.ConeGeometry(3, 6, 12),
     new THREE.SphereGeometry(3, 16, 16),
+    new THREE.SphereGeometry(3.5, 64, 64),
   ];
 
   const outlineColors = [0xf5f1e9, 0xd2b48c, 0x8b5e3c];
 
   const shapes = [];
-  const count = 80;
+  const count = 200;
 
   for (let i = 0; i < count; i++) {
     const geometry = geometries[Math.floor(Math.random() * geometries.length)];
@@ -158,8 +159,8 @@ export function init3DBackground() {
   let mouseX = 0,
     mouseY = 0;
   window.addEventListener("mousemove", (e) => {
-    mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
-    mouseY = -(e.clientY / window.innerHeight - 0.5) * 2;
+    mouseX = (e.clientX / window.innerWidth - 0.6) * 2;
+    mouseY = -(e.clientY / window.innerHeight - 0.6) * 2;
   });
 
   // Animate loop

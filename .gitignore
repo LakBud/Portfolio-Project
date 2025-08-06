@@ -1,21 +1,33 @@
-
 # OS files
 .DS_Store
 Thumbs.db
+Desktop.ini
 
 # Logs
 *.log
 
-# Dependency folders 
-node_modules/
-
-# Build or distribution folders 
+# Build or distribution folders
 dist/
 build/
+out/
+public/
 
-# Environment variables file 
+# Environment variables file (if you ever use any)
 .env
 
 # IDE config folders
 .vscode/
 .idea/
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+
+# Thumbnails
+._*
+
+# Mac system files
+.AppleDouble
+.LSOverride
