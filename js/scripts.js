@@ -1,4 +1,11 @@
 export function initScripts() {
+  // === SORTABLE  ===
+
+  const goalsList = document.querySelector(".goals ol");
+  if (goalsList) {
+    Sortable.create(goalsList, { animation: 150 });
+  }
+
   // === CLEAR CONTENT ===
 
   const clearBtn = document.getElementById("toggleClearBtn");

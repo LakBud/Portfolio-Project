@@ -7,6 +7,13 @@
     <link rel="stylesheet" href="styles.css" />
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
     <link rel="icon" href="ASSETS/images/buddo.webp" type="image/webp" sizes="32x32" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js" defer></script>
+    <script type="module" src="js/main.js" defer></script>
   </head>
 
   <body>
@@ -176,14 +183,13 @@
 
       <p id="creditsP" style="text-align: center; font-size: 1rem; padding: 10px; margin-bottom: 80px">
         Credits: <br />
-        Ambient Waves by Erokia & SFX from freesound.org
+        Ambient Waves by Erokia &amp; SFX from freesound.org
       </p>
     </main>
 
     <footer>
       <div class="footer-inner">
         <div class="fixed-social-icons" aria-label="Footer social media links">
-          <!-- YouTube -->
           <a
             href="https://www.youtube.com/@Budosso"
             target="_blank"
@@ -198,7 +204,6 @@
             </svg>
           </a>
 
-          <!-- X (Twitter) -->
           <a href="https://x.com/BuddoYap" target="_blank" title="X" class="x-icon" rel="noopener noreferrer">
             <svg
               viewBox="0 0 120 120"
@@ -216,7 +221,6 @@
             </svg>
           </a>
 
-          <!-- GitHub -->
           <a href="https://github.com/LakBud" target="_blank" title="GitHub" class="github-icon" rel="noopener noreferrer">
             <svg
               viewBox="0 0 24 24"
@@ -245,21 +249,5 @@
         <div class="footer-spacer"></div>
       </div>
     </footer>
-
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
-    <script>
-      Sortable.create(document.querySelector(".goals ol"), {
-        animation: 150,
-      });
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
-
-    <script type="module" src="js/main.js" defer></script>
   </body>
 </html>

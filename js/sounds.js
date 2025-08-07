@@ -3,7 +3,7 @@ export function initSounds() {
   function setupAmbient(validPages, audioSrc, storageKey) {
     if (!validPages.includes(window.location.pathname)) return;
 
-    const sound = new Howl({
+    let sound = new Howl({
       src: [audioSrc],
       loop: true,
       volume: 0.1,
@@ -11,27 +11,28 @@ export function initSounds() {
       onload: () => {
         const saved = parseFloat(localStorage.getItem(storageKey));
         if (!isNaN(saved)) sound.seek(saved);
-        // Don't auto-play here; wait for user interaction
       },
       onloaderror: (id, err) => console.error("Howler load error:", err),
       onplayerror: (id, err) => {
         console.warn("Howler play error:", err);
-        // Try playing again on unlock (user interaction)
         sound.once("unlock", () => sound.play());
       },
     });
 
+    // Function to start sound and remove listeners once done
     function startSound() {
-      sound.play();
+      if (!sound.playing()) {
+        sound.play();
+      }
       window.removeEventListener("click", startSound);
       window.removeEventListener("keydown", startSound);
     }
 
-    // Wait for user interaction to start playback
     window.addEventListener("click", startSound);
     window.addEventListener("keydown", startSound);
 
-    setInterval(() => {
+    // Save playback position only while playing
+    const intervalId = setInterval(() => {
       if (sound.playing()) {
         localStorage.setItem(storageKey, sound.seek().toFixed(2));
       }
@@ -41,6 +42,9 @@ export function initSounds() {
       if (sound.playing()) {
         localStorage.setItem(storageKey, sound.seek().toFixed(2));
       }
+      clearInterval(intervalId);
+      window.removeEventListener("click", startSound);
+      window.removeEventListener("keydown", startSound);
     });
   }
 
