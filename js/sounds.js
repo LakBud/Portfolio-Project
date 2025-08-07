@@ -2,65 +2,47 @@ Howler.html5PoolSize = 500;
 const ambientMap = new Map();
 export function initSounds() {
   // === BACKGROUND AMBIENT ===
-  function setupAmbient(validPaths, audioSrc, storageKey) {
-    if (!validPaths.includes(window.location.pathname)) return;
-
-    if (ambientMap.has(storageKey)) {
-      const existing = ambientMap.get(storageKey);
-      if (!existing.playing()) {
-        const startSound = () => {
-          existing.play();
-          window.removeEventListener("click", startSound);
-          window.removeEventListener("keydown", startSound);
-        };
-        window.addEventListener("click", startSound, { once: true });
-        window.addEventListener("keydown", startSound, { once: true });
-      }
-      return;
-    }
+  function setupAmbient(validPages, audioSrc, storageKey) {
+    if (!validPages.includes(window.location.pathname)) return;
 
     const sound = new Howl({
       src: [audioSrc],
       loop: true,
       volume: 0.1,
       html5: true,
-      onload() {
-        const savedTime = parseFloat(localStorage.getItem(storageKey));
-        if (!isNaN(savedTime)) sound.seek(savedTime);
+      onload: () => {
+        const saved = parseFloat(localStorage.getItem(storageKey));
+        if (!isNaN(saved)) sound.seek(saved);
+        // Don't auto-play here; wait for user interaction
       },
-      onloaderror(id, err) {
-        console.error("Howler load error:", err);
-      },
-      onplayerror(id, err) {
+      onloaderror: (id, err) => console.error("Howler load error:", err),
+      onplayerror: (id, err) => {
         console.warn("Howler play error:", err);
+        // Try playing again on unlock (user interaction)
         sound.once("unlock", () => sound.play());
       },
     });
 
-    ambientMap.set(storageKey, sound);
-
-    const startSound = () => {
-      if (!sound.playing()) sound.play();
+    function startSound() {
+      sound.play();
       window.removeEventListener("click", startSound);
       window.removeEventListener("keydown", startSound);
-    };
+    }
 
-    window.addEventListener("click", startSound, { once: true });
-    window.addEventListener("keydown", startSound, { once: true });
+    // Wait for user interaction to start playback
+    window.addEventListener("click", startSound);
+    window.addEventListener("keydown", startSound);
 
-    const savePosition = () => {
+    setInterval(() => {
       if (sound.playing()) {
         localStorage.setItem(storageKey, sound.seek().toFixed(2));
       }
-    };
-
-    const intervalId = setInterval(savePosition, 1000);
+    }, 1000);
 
     window.addEventListener("beforeunload", () => {
-      savePosition();
-      clearInterval(intervalId);
-      window.removeEventListener("click", startSound);
-      window.removeEventListener("keydown", startSound);
+      if (sound.playing()) {
+        localStorage.setItem(storageKey, sound.seek().toFixed(2));
+      }
     });
   }
 
