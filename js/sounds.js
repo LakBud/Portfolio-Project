@@ -1,30 +1,46 @@
 export function initSounds() {
   // === BACKGROUND AMBIENT ===
-  function setupAmbient(page, audioSrc, storageKey) {
-    if (window.location.pathname === page) {
-      const sound = new Howl({
-        src: [audioSrc],
-        loop: true,
-        volume: 0.1,
-        onload: () => {
-          const saved = parseFloat(localStorage.getItem(storageKey));
-          if (!isNaN(saved)) sound.seek(saved);
+  function setupAmbient(validPages, audioSrc, storageKey) {
+    const currentPath = window.location.pathname;
+    console.log("Current path:", currentPath);
+
+    if (!validPages.includes(currentPath)) return;
+
+    const sound = new Howl({
+      src: [audioSrc],
+      loop: true,
+      volume: 0.1,
+      html5: true,
+      onload: () => {
+        const saved = parseFloat(localStorage.getItem(storageKey));
+        if (!isNaN(saved)) {
+          sound.seek(saved);
+        }
+        sound.play();
+      },
+      onloaderror: (id, err) => {
+        console.error("Howler load error:", err);
+      },
+      onplayerror: (id, err) => {
+        console.error("Howler play error:", err);
+        sound.once("unlock", () => {
           sound.play();
-        },
-      });
+        });
+      },
+    });
 
-      setInterval(() => {
-        if (sound.playing()) {
-          localStorage.setItem(storageKey, sound.seek().toFixed(2));
-        }
-      }, 1000);
+    const saveTime = () => {
+      if (sound.playing()) {
+        localStorage.setItem(storageKey, sound.seek().toFixed(2));
+      }
+    };
 
-      window.addEventListener("beforeunload", () => {
-        if (sound.playing()) {
-          localStorage.setItem(storageKey, sound.seek().toFixed(2));
-        }
-      });
-    }
+    const saveInterval = setInterval(saveTime, 1000);
+
+    window.addEventListener("beforeunload", () => {
+      saveTime();
+      clearInterval(saveInterval);
+    });
   }
 
   // Background Ambient Usage:
