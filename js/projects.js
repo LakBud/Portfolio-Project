@@ -1,17 +1,16 @@
+Howler.html5PoolSize = 10000;
 export async function initProjects() {
   // === AUDIO SETUP  ===
   const hoverSound = new Howl({
     src: ["ASSETS/sounds/hover.mp3"],
     volume: 0.3,
     html5: true,
-    html5Pool: 40,
   });
 
   const clickSound = new Howl({
     src: ["ASSETS/sounds/click.mp3"],
     volume: 0.6,
     html5: true,
-    html5Pool: 40,
   });
 
   // === PROJECT FETCH  ===
@@ -75,9 +74,13 @@ export async function initProjects() {
       link.className = "project-link";
       link.textContent = "View";
 
-      link.addEventListener("click", () => {
-        if (!clickSound.playing()) clickSound.play();
-      });
+      link.addEventListener(
+        "click",
+        () => {
+          if (!clickSound.playing()) clickSound.play();
+        },
+        200
+      );
 
       // WRAP TEXTS
       const txtDiv = document.createElement("div");

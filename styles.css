@@ -56,6 +56,10 @@ header.title {
   z-index: 9999;
 }
 
+.title-text {
+  min-height: 50px;
+}
+
 .logo {
   height: 100px;
   width: auto;
@@ -79,7 +83,9 @@ header.title h1 {
   position: relative;
   white-space: normal;
   word-break: break-word;
-  display: inline;
+  display: inline-block;
+  min-height: 1em;
+  min-width: 250px;
 }
 
 #typed-subtitle::after {
@@ -87,6 +93,7 @@ header.title h1 {
   position: absolute;
   animation: blink 1.2s ease-in-out infinite;
   color: inherit;
+  overflow: hidden;
 }
 
 @keyframes blink {
