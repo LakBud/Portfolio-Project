@@ -1,22 +1,36 @@
 Howler.html5PoolSize = 500;
 export function initSounds() {
   // === BACKGROUND AMBIENT ===
-  if (window.location.pathname === "/index.html") {
-    const ambientSound = new Howl({
-      src: ["ASSETS/sounds/ambient1.mp3"],
-      loop: true,
-      volume: 0.5,
-    });
+  const ambientHome = new Howl({
+    src: ["./ASSETS/sounds/ambient1.mp3"],
+    loop: true,
+    volume: 0.2,
+  });
 
-    ambientSound.play();
-  } else if (window.location.pathname === "/projects.html") {
-    const ambientSound = new Howl({
-      src: ["ASSETS/sounds/ambient2.mp3"],
-      loop: true,
-      volume: 0.5,
-    });
+  const ambientProjects = new Howl({
+    src: ["./ASSETS/sounds/ambient2.mp3"],
+    loop: true,
+    volume: 0.2,
+  });
 
-    ambientSound.play();
+  const page = document.body.dataset.page;
+
+  let ambientToPlay = null;
+
+  if (page === "home") {
+    ambientToPlay = ambientHome;
+  } else if (page === "projects") {
+    ambientToPlay = ambientProjects;
+  }
+
+  if (ambientToPlay) {
+    document.addEventListener(
+      "click",
+      () => {
+        ambientToPlay.play();
+      },
+      { once: true }
+    );
   }
 
   // === SOUND EFFECTS ===
