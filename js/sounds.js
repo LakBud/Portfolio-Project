@@ -1,64 +1,23 @@
 Howler.html5PoolSize = 500;
 export function initSounds() {
   // === BACKGROUND AMBIENT ===
-  function setupAmbient(validPages, audioSrc, storageKey) {
-    if (!validPages.includes(window.location.pathname)) return;
-
-    const sound = new Howl({
-      src: [audioSrc],
+  if (window.location.pathname === "/index.html") {
+    const ambientSound = new Howl({
+      src: ["ASSETS/sounds/ambient1.mp3"],
       loop: true,
-      volume: 0.1,
-      html5: true,
-      onload() {
-        const savedTime = parseFloat(localStorage.getItem(storageKey));
-        if (!isNaN(savedTime)) sound.seek(savedTime);
-      },
-      onloaderror(id, err) {
-        console.error("Howler load error:", err);
-      },
-      onplayerror(id, err) {
-        console.warn("Howler play error:", err);
-        sound.once("unlock", () => sound.play());
-      },
+      volume: 0.5,
     });
 
-    function startSound() {
-      console.log("User interaction detected, attempting to play ambient sound.");
-      if (!sound.playing()) {
-        const playResult = sound.play();
-        if (playResult && typeof playResult.then === "function") {
-          playResult.catch((err) => {
-            console.warn("Playback prevented:", err);
-          });
-        }
-      }
-
-      window.removeEventListener("click", startSound);
-      window.removeEventListener("keydown", startSound);
-    }
-
-    // Removed passive: true to ensure playback isn't blocked
-    window.addEventListener("click", startSound, { once: true });
-    window.addEventListener("keydown", startSound, { once: true });
-
-    const intervalId = setInterval(() => {
-      if (sound.playing()) {
-        localStorage.setItem(storageKey, sound.seek().toFixed(2));
-      }
-    }, 1000);
-
-    window.addEventListener("beforeunload", () => {
-      if (sound.playing()) {
-        localStorage.setItem(storageKey, sound.seek().toFixed(2));
-      }
-      clearInterval(intervalId);
-      window.removeEventListener("click", startSound);
-      window.removeEventListener("keydown", startSound);
+    ambientSound.play();
+  } else if (window.location.pathname === "/projects.html") {
+    const ambientSound = new Howl({
+      src: ["ASSETS/sounds/ambient2.mp3"],
+      loop: true,
+      volume: 0.5,
     });
+
+    ambientSound.play();
   }
-
-  setupAmbient(["/index.html"], "ASSETS/sounds/ambient1.mp3", "bgMusicTime_index");
-  setupAmbient(["/projects.html"], "ASSETS/sounds/ambient2.mp3", "bgMusicTime_projects");
 
   // === SOUND EFFECTS ===
 
