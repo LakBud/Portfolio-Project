@@ -1,5 +1,4 @@
 Howler.html5PoolSize = 500;
-const ambientMap = new Map();
 export function initSounds() {
   // === BACKGROUND AMBIENT ===
   function setupAmbient(validPages, audioSrc, storageKey) {
@@ -10,30 +9,39 @@ export function initSounds() {
       loop: true,
       volume: 0.1,
       html5: true,
-      onload: () => {
-        const saved = parseFloat(localStorage.getItem(storageKey));
-        if (!isNaN(saved)) sound.seek(saved);
-        // Don't auto-play here; wait for user interaction
+      onload() {
+        const savedTime = parseFloat(localStorage.getItem(storageKey));
+        if (!isNaN(savedTime)) sound.seek(savedTime);
       },
-      onloaderror: (id, err) => console.error("Howler load error:", err),
-      onplayerror: (id, err) => {
+      onloaderror(id, err) {
+        console.error("Howler load error:", err);
+      },
+      onplayerror(id, err) {
         console.warn("Howler play error:", err);
-        // Try playing again on unlock (user interaction)
         sound.once("unlock", () => sound.play());
       },
     });
 
     function startSound() {
-      sound.play();
+      if (!sound.playing()) {
+        const playResult = sound.play();
+        if (playResult) {
+          if (typeof playResult.then === "function") {
+            playResult.catch((err) => {
+              console.warn("Playback prevented:", err);
+            });
+          }
+        }
+      }
+
       window.removeEventListener("click", startSound);
       window.removeEventListener("keydown", startSound);
     }
 
-    // Wait for user interaction to start playback
-    window.addEventListener("click", startSound);
-    window.addEventListener("keydown", startSound);
+    window.addEventListener("click", startSound, { once: true, passive: true });
+    window.addEventListener("keydown", startSound, { once: true, passive: true });
 
-    setInterval(() => {
+    const intervalId = setInterval(() => {
       if (sound.playing()) {
         localStorage.setItem(storageKey, sound.seek().toFixed(2));
       }
@@ -43,6 +51,9 @@ export function initSounds() {
       if (sound.playing()) {
         localStorage.setItem(storageKey, sound.seek().toFixed(2));
       }
+      clearInterval(intervalId);
+      window.removeEventListener("click", startSound);
+      window.removeEventListener("keydown", startSound);
     });
   }
 
