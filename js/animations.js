@@ -115,7 +115,7 @@ export function init3DBackground() {
   const outlineColors = [0xf5f1e9, 0xd2b48c, 0x8b5e3c];
 
   const shapes = [];
-  const count = 200;
+  const count = 80;
 
   for (let i = 0; i < count; i++) {
     const geometry = geometries[Math.floor(Math.random() * geometries.length)];
@@ -147,9 +147,9 @@ export function init3DBackground() {
 
     // Position
     mesh.position.set(
-      (Math.random() - 0.5) * 200, // X: spread horizontally
-      (Math.random() - 0.4) * 300, // Y: more downward spread
-      (Math.random() - 0.5) * 300 // Z: some depth variation
+      (Math.random() - 0.5) * 100, // X: spread horizontally
+      (Math.random() - 0.4) * 200, // Y: more downward spread
+      (Math.random() - 0.5) * 200 // Z: some depth variation
     );
 
     // Random rotation
