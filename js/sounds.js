@@ -1,4 +1,36 @@
 export function initSounds() {
+  // === BACKGROUND AMBIENT ===
+  function setupAmbient(page, audioSrc, storageKey) {
+    if (window.location.pathname === page) {
+      const sound = new Howl({
+        src: [audioSrc],
+        loop: true,
+        volume: 0.1,
+        onload: () => {
+          const saved = parseFloat(localStorage.getItem(storageKey));
+          if (!isNaN(saved)) sound.seek(saved);
+          sound.play();
+        },
+      });
+
+      setInterval(() => {
+        if (sound.playing()) {
+          localStorage.setItem(storageKey, sound.seek().toFixed(2));
+        }
+      }, 1000);
+
+      window.addEventListener("beforeunload", () => {
+        if (sound.playing()) {
+          localStorage.setItem(storageKey, sound.seek().toFixed(2));
+        }
+      });
+    }
+  }
+
+  // Background Ambient Usage:
+  setupAmbient("/index.html", "ASSETS/sounds/ambient1.mp3", "bgMusicTime_index");
+  setupAmbient("/projects.html", "ASSETS/sounds/ambient2.mp3", "bgMusicTime_projects");
+
   // === SOUND EFFECTS ===
 
   const hoverSound = new Howl({
@@ -8,7 +40,7 @@ export function initSounds() {
 
   const clickSound = new Howl({
     src: ["ASSETS/sounds/click.mp3"],
-    volume: 0.6,
+    volume: 0.3,
   });
 
   document.querySelectorAll("a, button").forEach((el) => {

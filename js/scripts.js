@@ -7,7 +7,7 @@ export function initScripts() {
     const elementsToToggle = [
       ...document.querySelectorAll("section"),
       document.querySelector(".slider"),
-      document.querySelector("#emailP"),
+      document.querySelector("#creditsP"),
     ];
 
     elementsToToggle.forEach((el) => {
@@ -65,11 +65,20 @@ export function initScripts() {
     }
   }
 
-  // === CLEAR FORM ===
+  // === FORM SCRIPTS ===
   const form = document.getElementById("contactForm");
   if (form) {
     form.addEventListener("submit", (e) => {
       form.reset();
+
+      const nameInput = form.querySelector("input[name='name']");
+      const emailInput = form.querySelector("input[name='email']");
+      const messageInput = form.querySelector("textarea[name='message']");
+
+      if (nameInput) nameInput.placeholder = "You Submitted!";
+      if (emailInput) emailInput.placeholder = "If you did reCAPTCHA";
+      if (messageInput)
+        messageInput.placeholder = "Then I will respond to your message as quick as I can! No need to send another email again.";
     });
   }
 
