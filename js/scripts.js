@@ -1,36 +1,37 @@
 export function initScripts() {
-  // === SORTABLE  ===
-
+  // Cache frequently used elements early
   const goalsList = document.querySelector(".goals ol");
+  const clearBtn = document.getElementById("toggleClearBtn");
+  const goalList = document.getElementById("goals-list");
+  const toggleBtn = document.getElementById("themeToggle");
+  const themeIcon = document.getElementById("themeIcon");
+  const form = document.getElementById("contactForm");
+  const volumeToggle = document.getElementById("volumeToggle");
+  const volumeIcon = document.getElementById("volumeIcon");
+
+  // === SORTABLE ===
   if (goalsList) {
     Sortable.create(goalsList, { animation: 150 });
   }
 
   // === CLEAR CONTENT ===
+  if (clearBtn) {
+    clearBtn.addEventListener("click", () => {
+      const elementsToToggle = [
+        ...document.querySelectorAll("section"),
+        document.querySelector(".slider"),
+        document.querySelector("#creditsP"),
+      ].filter(Boolean); // filter out nulls
 
-  const clearBtn = document.getElementById("toggleClearBtn");
+      elementsToToggle.forEach((el) => el.classList.toggle("section-hidden-opacity"));
 
-  clearBtn.addEventListener("click", () => {
-    const elementsToToggle = [
-      ...document.querySelectorAll("section"),
-      document.querySelector(".slider"),
-      document.querySelector("#creditsP"),
-    ];
-
-    elementsToToggle.forEach((el) => {
-      if (el) {
-        el.classList.toggle("section-hidden-opacity");
-      }
+      clearBtn.textContent = clearBtn.textContent === "X" ? "O" : "X";
     });
-
-    // Toggle button text between "X" and "O"
-    clearBtn.textContent = clearBtn.textContent === "X" ? "O" : "X";
-  });
+  }
 
   // === SHUFFLE GOALS LIST ===
-  const goalList = document.getElementById("goals-list");
   if (goalList) {
-    window.shuffleGoals = function () {
+    window.shuffleGoals = () => {
       const items = Array.from(goalList.children);
       for (let i = items.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -41,30 +42,22 @@ export function initScripts() {
   }
 
   // === DARK/LIGHT TOGGLE ===
-  const toggleBtn = document.getElementById("themeToggle");
-  const themeIcon = document.getElementById("themeIcon");
-
-  const themeSound = new Howl({
-    src: ["ASSETS/sounds/woosh.mp3"],
-    volume: 0.6,
-    preload: true,
-  });
-
   if (toggleBtn && themeIcon) {
+    const themeSound = new Howl({
+      src: ["ASSETS/sounds/woosh.mp3"],
+      volume: 0.6,
+      preload: true,
+    });
+
     toggleBtn.addEventListener("click", () => {
-      document.body.classList.toggle("dark-mode");
-      const isDark = document.body.classList.contains("dark-mode");
-
+      const isDark = document.body.classList.toggle("dark-mode");
       themeIcon.src = isDark ? "ASSETS/images/sun.webp" : "ASSETS/images/moon.webp";
-
       localStorage.setItem("theme", isDark ? "dark" : "light");
-
       themeSound.play();
     });
 
-    // Restore saved theme on page load
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme === "dark") {
+    // Restore saved theme on load
+    if (localStorage.getItem("theme") === "dark") {
       document.body.classList.add("dark-mode");
       themeIcon.src = "ASSETS/images/sun.webp";
     } else {
@@ -73,7 +66,6 @@ export function initScripts() {
   }
 
   // === FORM SCRIPTS ===
-  const form = document.getElementById("contactForm");
   if (form) {
     form.addEventListener("submit", (e) => {
       form.reset();
@@ -90,40 +82,28 @@ export function initScripts() {
   }
 
   // === TOGGLE VOLUME ===
-  const volumeToggle = document.getElementById("volumeToggle");
-  const volumeIcon = document.getElementById("volumeIcon");
+  if (volumeToggle && volumeIcon) {
+    const toggleClickSound = new Howl({
+      src: ["ASSETS/sounds/volume-click.mp3"],
+      volume: 0.5,
+    });
 
-  const toggleClickSound = new Howl({
-    src: ["ASSETS/sounds/volume-click.mp3"],
-    volume: 0.5,
-  });
+    let soundOn = localStorage.getItem("soundOn") !== null ? localStorage.getItem("soundOn") === "true" : true;
 
-  let soundOn = true;
-
-  const savedSoundOn = localStorage.getItem("soundOn");
-  if (savedSoundOn !== null) {
-    soundOn = savedSoundOn === "true";
     Howler.mute(!soundOn);
     volumeIcon.src = soundOn ? "ASSETS/images/volume.webp" : "ASSETS/images/volume-muted.webp";
     volumeIcon.alt = soundOn ? "Volume On" : "Volume Off";
-  } else {
-    Howler.mute(false);
-    volumeIcon.src = "ASSETS/images/volume.webp";
-    volumeIcon.alt = "Volume On";
+
+    volumeToggle.addEventListener("click", () => {
+      soundOn = !soundOn;
+      Howler.mute(!soundOn);
+
+      volumeIcon.src = soundOn ? "ASSETS/images/volume.webp" : "ASSETS/images/volume-muted.webp";
+      volumeIcon.alt = soundOn ? "Volume On" : "Volume Off";
+
+      localStorage.setItem("soundOn", soundOn);
+
+      if (soundOn) toggleClickSound.play();
+    });
   }
-
-  volumeToggle.addEventListener("click", () => {
-    soundOn = !soundOn;
-
-    Howler.mute(!soundOn);
-
-    volumeIcon.src = soundOn ? "ASSETS/images/volume.webp" : "ASSETS/images/volume-muted.webp";
-    volumeIcon.alt = soundOn ? "Volume On" : "Volume Off";
-
-    localStorage.setItem("soundOn", soundOn);
-
-    if (soundOn) {
-      toggleClickSound.play();
-    }
-  });
 }

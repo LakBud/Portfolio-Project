@@ -1,78 +1,92 @@
+Howler.html5PoolSize = 10000;
 export function initSounds() {
   // === BACKGROUND AMBIENT ===
-  function setupAmbient(validPages, audioSrc, storageKey) {
-    if (!validPages.includes(window.location.pathname)) return;
+  function setupAmbient(validPaths, audioSrc, storageKey) {
+    if (!validPaths.includes(window.location.pathname)) return;
 
-    let sound = new Howl({
+    const sound = new Howl({
       src: [audioSrc],
       loop: true,
       volume: 0.1,
       html5: true,
-      onload: () => {
-        const saved = parseFloat(localStorage.getItem(storageKey));
-        if (!isNaN(saved)) sound.seek(saved);
+      onload() {
+        const savedTime = parseFloat(localStorage.getItem(storageKey));
+        if (!isNaN(savedTime)) sound.seek(savedTime);
       },
-      onloaderror: (id, err) => console.error("Howler load error:", err),
-      onplayerror: (id, err) => {
+      onloaderror(id, err) {
+        console.error("Howler load error:", err);
+      },
+      onplayerror(id, err) {
         console.warn("Howler play error:", err);
         sound.once("unlock", () => sound.play());
       },
     });
 
-    // Function to start sound and remove listeners once done
-    function startSound() {
-      if (!sound.playing()) {
-        sound.play();
-      }
+    const startSound = () => {
+      if (!sound.playing()) sound.play();
       window.removeEventListener("click", startSound);
       window.removeEventListener("keydown", startSound);
-    }
+    };
 
-    window.addEventListener("click", startSound);
-    window.addEventListener("keydown", startSound);
+    window.addEventListener("click", startSound, { once: true });
+    window.addEventListener("keydown", startSound, { once: true });
 
-    // Save playback position only while playing
-    const intervalId = setInterval(() => {
+    const savePosition = () => {
       if (sound.playing()) {
         localStorage.setItem(storageKey, sound.seek().toFixed(2));
       }
-    }, 1000);
+    };
+
+    const intervalId = setInterval(savePosition, 1000);
 
     window.addEventListener("beforeunload", () => {
-      if (sound.playing()) {
-        localStorage.setItem(storageKey, sound.seek().toFixed(2));
-      }
+      savePosition();
       clearInterval(intervalId);
       window.removeEventListener("click", startSound);
       window.removeEventListener("keydown", startSound);
     });
   }
 
-  // Background Ambient Usage:
-  setupAmbient("/index.html", "ASSETS/sounds/ambient1.mp3", "bgMusicTime_index");
-  setupAmbient("/projects.html", "ASSETS/sounds/ambient2.mp3", "bgMusicTime_projects");
+  // Setup ambient sounds for relevant pages
+  setupAmbient(["/index.html"], "ASSETS/sounds/ambient1.mp3", "bgMusicTime_index");
+  setupAmbient(["/projects.html"], "ASSETS/sounds/ambient2.mp3", "bgMusicTime_projects");
 
   // === SOUND EFFECTS ===
 
   const hoverSound = new Howl({
     src: ["ASSETS/sounds/hover.mp3"],
     volume: 0.3,
+    preload: true,
   });
 
   const clickSound = new Howl({
     src: ["ASSETS/sounds/click.mp3"],
     volume: 0.3,
+    preload: true,
   });
 
-  document.querySelectorAll("a, button").forEach((el) => {
-    el.addEventListener("mouseenter", () => hoverSound.play());
-    if (el.id === "nextBtn" || el.id === "prevBtn" || el.id === "themeToggle" || el.id === "volumeToggle") return;
-    el.addEventListener("click", () => clickSound.play());
+  // Use event delegation on document to reduce listeners
+  document.body.addEventListener("mouseover", (e) => {
+    if (e.target.closest("a, button")) {
+      hoverSound.play();
+    }
+  });
+
+  document.body.addEventListener("click", (e) => {
+    const target = e.target.closest("a, button");
+    if (!target) return;
+
+    // Exclude specific IDs
+    const excludedIds = new Set(["nextBtn", "prevBtn", "themeToggle", "volumeToggle"]);
+    if (excludedIds.has(target.id)) return;
+
+    clickSound.play();
   });
 
   const slideSound = new Howl({
     src: ["ASSETS/sounds/slide.mp3"],
     volume: 0.3,
+    preload: true,
   });
 
   const prevBtn = document.getElementById("prevBtn");
@@ -84,11 +98,13 @@ export function initSounds() {
     src: ["ASSETS/sounds/dog.mp3"],
     volume: 0.5,
     loop: false,
+    preload: true,
   });
 
-  document.querySelectorAll(".logo").forEach((dogEl) => {
-    dogEl.addEventListener("click", () => {
+  // Use event delegation for logo clicks
+  document.body.addEventListener("click", (e) => {
+    if (e.target.closest(".logo")) {
       dogSound.play();
-    });
+    }
   });
 }

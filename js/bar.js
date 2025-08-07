@@ -1,6 +1,5 @@
 export function initBar() {
   // === DRAG BARS ===
-
   gsap.registerPlugin(ScrollTrigger);
 
   document.querySelectorAll(".interests ul").forEach((list) => {
@@ -9,7 +8,7 @@ export function initBar() {
       let dragging = false;
       let animationRunning = false;
 
-      // Drag logic
+      // DRAG LOGIC
       function updateWidth(clientX) {
         const rect = bar.getBoundingClientRect();
         let percent = ((clientX - rect.left) / rect.width) * 100;
@@ -18,31 +17,41 @@ export function initBar() {
         progress.textContent = Math.round(percent) + "%";
       }
 
-      progress.addEventListener("mousedown", () => {
+      // Use named handlers so we can add/remove listeners if needed
+      function onMouseDown() {
         if (animationRunning) return;
         dragging = true;
-      });
-      progress.addEventListener("touchstart", () => {
+      }
+      function onTouchStart(e) {
         if (animationRunning) return;
         dragging = true;
-      });
-      window.addEventListener("mouseup", () => (dragging = false));
-      window.addEventListener("touchend", () => (dragging = false));
-      window.addEventListener("mousemove", (e) => {
+        e.preventDefault(); // Prevent scrolling when dragging progress
+      }
+      function onMouseUp() {
+        dragging = false;
+      }
+      function onTouchEnd() {
+        dragging = false;
+      }
+      function onMouseMove(e) {
         if (!dragging || animationRunning) return;
         updateWidth(e.clientX);
-      });
-      progress.addEventListener(
-        "touchmove",
-        (e) => {
-          if (!dragging || animationRunning) return;
-          e.preventDefault();
-          updateWidth(e.touches[0].clientX);
-        },
-        { passive: false }
-      );
+      }
+      function onTouchMove(e) {
+        if (!dragging || animationRunning) return;
+        e.preventDefault();
+        updateWidth(e.touches[0].clientX);
+      }
 
-      // GSAP animation
+      // Add event listeners with passive option where appropriate
+      progress.addEventListener("mousedown", onMouseDown);
+      progress.addEventListener("touchstart", onTouchStart, { passive: false }); // passive false to allow preventDefault
+      window.addEventListener("mouseup", onMouseUp);
+      window.addEventListener("touchend", onTouchEnd);
+      window.addEventListener("mousemove", onMouseMove);
+      progress.addEventListener("touchmove", onTouchMove, { passive: false });
+
+      // GSAP ANIMATION SETUP
       const targetWidthStr = progress.style.getPropertyValue("--progress-width");
       const targetWidth = parseFloat(targetWidthStr) || 0;
       const numberObj = { val: 0 };
@@ -51,7 +60,7 @@ export function initBar() {
       gsap.set(progress, { width: 0 });
       progress.textContent = "0%";
 
-      // Animate width
+      // Animate width on scroll trigger
       gsap.to(progress, {
         width: targetWidth + "%",
         duration: 0.5,
@@ -75,7 +84,7 @@ export function initBar() {
         },
       });
 
-      // Animate number
+      // Animate number counting
       gsap.to(numberObj, {
         val: targetWidth,
         duration: 3,

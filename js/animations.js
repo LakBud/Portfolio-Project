@@ -61,15 +61,18 @@ export function initAnimations() {
   });
 
   // === TYPEWRITER EFFECT ===
-  new Typed("#typed-subtitle", {
-    strings: ["17 Year Old Web Builder", "Aspiring Fullstack Developer", "Frontend Programmer"],
-    typeSpeed: 20,
-    backSpeed: 30,
-    backDelay: 1500,
-    loop: true,
-    smartBackspace: true,
-    showCursor: false,
-  });
+  const typedElement = document.getElementById("typed-subtitle");
+  if (typedElement) {
+    new Typed(typedElement, {
+      strings: ["17 Year Old Web Builder", "Aspiring Fullstack Developer", "Frontend Programmer"],
+      typeSpeed: 20,
+      backSpeed: 30,
+      backDelay: 1500,
+      loop: true,
+      smartBackspace: true,
+      showCursor: false,
+    });
+  }
 }
 
 // === 3D RANDOM ANIMATION BACKGROUND (THREEJS) ===
@@ -97,7 +100,7 @@ export function init3DBackground() {
   scene.add(pointLight);
   scene.add(new THREE.AmbientLight(0xffffff, 0.6)); // brighter ambient
 
-  // Simple geometries - bigger sizes
+  // Simple geometries
   const geometries = [
     new THREE.CircleGeometry(4, 16),
     new THREE.BoxGeometry(6, 6, 1),
@@ -119,7 +122,7 @@ export function init3DBackground() {
     const color = outlineColors[Math.floor(Math.random() * outlineColors.length)];
     const fillColor = 0xffffff; // white fill
 
-    // Fill material - white, semi-transparent
+    // Fill material
     const fillMaterial = new THREE.MeshStandardMaterial({
       color: fillColor,
       transparent: true,
@@ -127,7 +130,7 @@ export function init3DBackground() {
       side: THREE.DoubleSide,
     });
 
-    // Outline material - colored, wireframe for outline effect
+    // Outline material
     const outlineMaterial = new THREE.MeshBasicMaterial({
       color: color,
       wireframe: true,
@@ -138,11 +141,11 @@ export function init3DBackground() {
 
     const mesh = new THREE.Mesh(geometry, fillMaterial);
 
-    // Add outline as a child mesh
+    // Outline as a child mesh
     const outlineMesh = new THREE.Mesh(geometry, outlineMaterial);
     mesh.add(outlineMesh);
 
-    // Position spread mostly downward
+    // Position
     mesh.position.set(
       (Math.random() - 0.5) * 200, // X: spread horizontally
       (Math.random() - 0.4) * 300, // Y: more downward spread
