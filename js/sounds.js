@@ -1,10 +1,7 @@
 export function initSounds() {
   // === BACKGROUND AMBIENT ===
   function setupAmbient(validPages, audioSrc, storageKey) {
-    const currentPath = window.location.pathname;
-    console.log("Current path:", currentPath);
-
-    if (!validPages.includes(currentPath)) return;
+    if (!validPages.includes(window.location.pathname)) return;
 
     const sound = new Howl({
       src: [audioSrc],
@@ -13,33 +10,37 @@ export function initSounds() {
       html5: true,
       onload: () => {
         const saved = parseFloat(localStorage.getItem(storageKey));
-        if (!isNaN(saved)) {
-          sound.seek(saved);
-        }
-        sound.play();
+        if (!isNaN(saved)) sound.seek(saved);
+        // Don't auto-play here; wait for user interaction
       },
-      onloaderror: (id, err) => {
-        console.error("Howler load error:", err);
-      },
+      onloaderror: (id, err) => console.error("Howler load error:", err),
       onplayerror: (id, err) => {
-        console.error("Howler play error:", err);
-        sound.once("unlock", () => {
-          sound.play();
-        });
+        console.warn("Howler play error:", err);
+        // Try playing again on unlock (user interaction)
+        sound.once("unlock", () => sound.play());
       },
     });
 
-    const saveTime = () => {
+    function startSound() {
+      sound.play();
+      window.removeEventListener("click", startSound);
+      window.removeEventListener("keydown", startSound);
+    }
+
+    // Wait for user interaction to start playback
+    window.addEventListener("click", startSound);
+    window.addEventListener("keydown", startSound);
+
+    setInterval(() => {
       if (sound.playing()) {
         localStorage.setItem(storageKey, sound.seek().toFixed(2));
       }
-    };
-
-    const saveInterval = setInterval(saveTime, 1000);
+    }, 1000);
 
     window.addEventListener("beforeunload", () => {
-      saveTime();
-      clearInterval(saveInterval);
+      if (sound.playing()) {
+        localStorage.setItem(storageKey, sound.seek().toFixed(2));
+      }
     });
   }
 
