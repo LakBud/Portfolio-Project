@@ -23,14 +23,13 @@ export function initSounds() {
     });
 
     function startSound() {
+      console.log("User interaction detected, attempting to play ambient sound.");
       if (!sound.playing()) {
         const playResult = sound.play();
-        if (playResult) {
-          if (typeof playResult.then === "function") {
-            playResult.catch((err) => {
-              console.warn("Playback prevented:", err);
-            });
-          }
+        if (playResult && typeof playResult.then === "function") {
+          playResult.catch((err) => {
+            console.warn("Playback prevented:", err);
+          });
         }
       }
 
@@ -38,8 +37,9 @@ export function initSounds() {
       window.removeEventListener("keydown", startSound);
     }
 
-    window.addEventListener("click", startSound, { once: true, passive: true });
-    window.addEventListener("keydown", startSound, { once: true, passive: true });
+    // Removed passive: true to ensure playback isn't blocked
+    window.addEventListener("click", startSound, { once: true });
+    window.addEventListener("keydown", startSound, { once: true });
 
     const intervalId = setInterval(() => {
       if (sound.playing()) {
@@ -57,7 +57,6 @@ export function initSounds() {
     });
   }
 
-  // Setup ambient sounds for relevant pages
   setupAmbient(["/index.html"], "ASSETS/sounds/ambient1.mp3", "bgMusicTime_index");
   setupAmbient(["/projects.html"], "ASSETS/sounds/ambient2.mp3", "bgMusicTime_projects");
 
