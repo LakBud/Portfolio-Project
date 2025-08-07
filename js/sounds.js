@@ -1,8 +1,23 @@
-Howler.html5PoolSize = 10000;
+Howler.html5PoolSize = 500;
+const ambientMap = new Map();
 export function initSounds() {
   // === BACKGROUND AMBIENT ===
   function setupAmbient(validPaths, audioSrc, storageKey) {
     if (!validPaths.includes(window.location.pathname)) return;
+
+    if (ambientMap.has(storageKey)) {
+      const existing = ambientMap.get(storageKey);
+      if (!existing.playing()) {
+        const startSound = () => {
+          existing.play();
+          window.removeEventListener("click", startSound);
+          window.removeEventListener("keydown", startSound);
+        };
+        window.addEventListener("click", startSound, { once: true });
+        window.addEventListener("keydown", startSound, { once: true });
+      }
+      return;
+    }
 
     const sound = new Howl({
       src: [audioSrc],
@@ -21,6 +36,8 @@ export function initSounds() {
         sound.once("unlock", () => sound.play());
       },
     });
+
+    ambientMap.set(storageKey, sound);
 
     const startSound = () => {
       if (!sound.playing()) sound.play();
