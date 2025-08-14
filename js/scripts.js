@@ -11,8 +11,6 @@ export function initScripts() {
 
   // === SORTABLE ===
   if (goalsList) {
-    // Lazy-load Sortable only if needed (assuming Sortable is globally available or imported)
-    // If Sortable is big, consider dynamic import if you use bundlers
     Sortable.create(goalsList, { animation: 150 });
   }
 
@@ -21,15 +19,12 @@ export function initScripts() {
     clearBtn.addEventListener(
       "click",
       () => {
-        // Batch DOM updates: toggle a class on a wrapper or container if possible
-        // If not, toggle classes on elements as before but minimal
         const elementsToToggle = [
           ...document.querySelectorAll("section"),
           document.querySelector(".slider"),
           document.querySelector("#creditsP"),
         ].filter(Boolean);
 
-        // Use requestAnimationFrame to batch DOM changes for smoother repaint
         window.requestAnimationFrame(() => {
           elementsToToggle.forEach((el) => el.classList.toggle("section-hidden-opacity"));
           clearBtn.textContent = clearBtn.textContent === "X" ? "O" : "X";
@@ -87,8 +82,6 @@ export function initScripts() {
     form.addEventListener(
       "submit",
       (e) => {
-        e.preventDefault(); // prevent actual submission (unless handled elsewhere)
-
         form.reset();
 
         const nameInput = form.querySelector("input[name='name']");

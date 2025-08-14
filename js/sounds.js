@@ -60,15 +60,23 @@ export function initSounds() {
   const excludedClickIds = new Set(["nextBtn", "prevBtn", "themeToggle", "volumeToggle"]);
 
   // Event delegation for hover sounds on links and buttons
-  document.body.addEventListener(
-    "mouseover",
-    (e) => {
-      if (e.target.closest("a, button")) {
-        hoverSound.play();
-      }
-    },
-    { passive: true }
-  );
+
+  let last = null;
+
+  document.body.addEventListener("mouseover", (e) => {
+    const el = e.target.closest("a, button");
+    if (!el || el === last) return;
+    hoverSound.play();
+    last = el;
+  });
+
+  document.body.addEventListener("mouseout", (e) => {
+    if (!last) return;
+    const leftEl = e.target.closest("a, button");
+    if (leftEl === last && !leftEl.contains(e.relatedTarget)) {
+      last = null;
+    }
+  });
 
   // Single click listener for various click sounds
   document.body.addEventListener(
