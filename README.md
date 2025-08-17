@@ -24,4 +24,4 @@ Setup
 Just open index.html in your browser. No build tools or frameworks required.
 
 Future Plans
-Adding more features
+Adding more when the time comes.

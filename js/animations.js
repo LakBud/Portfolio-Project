@@ -64,7 +64,7 @@ export function initAnimations() {
   const typedElement = document.getElementById("typed-subtitle");
   if (typedElement) {
     new Typed(typedElement, {
-      strings: ["17 Year Old Web Builder", "Aspiring Fullstack Developer", "Frontend Programmer"],
+      strings: ["17 Year Old Web Builder", "Aspiring Developer", "Frontend Programmer"],
       typeSpeed: 20,
       backSpeed: 30,
       backDelay: 1500,

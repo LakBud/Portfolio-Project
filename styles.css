@@ -726,9 +726,12 @@ body.dark-mode {
 }
 
 .project-h3 {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   margin: 0;
   padding: 15px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
 }
 
 .project-p {

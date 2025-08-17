@@ -9,11 +9,11 @@
   },
 
   {
-    "title": "Buddo's Portfolio",
-    "date": "9/6/2025",
-    "description": "The one you are looking at!",
-    "image": "ASSETS/images/website.webp",
-    "skills": ["HTML", "CSS", "JavaScript", "JSON"],
-    "link": "https://buddo.vercel.app/"
+    "title": "Minecraft Stack Calculator",
+    "date": "17/8/2025",
+    "description": "A Minecraft stack calculator that helps players calculate the number of stacks needed for various items in the game.",
+    "image": "ASSETS/images/minecraft.webp",
+    "skills": ["React", "JavaScript", "Tailwind", "SASS"],
+    "link": "https://lakbud.github.io/MinecraftStackCalculator/"
   }
 ]
