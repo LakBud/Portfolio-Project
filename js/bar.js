@@ -2,7 +2,7 @@ export function initBar() {
   // === DRAG BARS ===
   gsap.registerPlugin(ScrollTrigger);
 
-  document.querySelectorAll(".interests ul").forEach((list) => {
+  document.querySelectorAll([".interests ul", ".skills-section ul"]).forEach((list) => {
     list.querySelectorAll(".progress-bar").forEach((bar) => {
       const progress = bar.querySelector(".progress");
       let dragging = false;

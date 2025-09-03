@@ -180,7 +180,7 @@ section h2 {
   text-align: left;
 }
 
-/* === 4. Interests + Slider === */
+/* === 4. Interests + Skills + Slider === */
 
 .interests-slider-container {
   display: flex;
@@ -188,17 +188,20 @@ section h2 {
   gap: 20px;
 }
 
-.interests {
+.interests,
+.skills-section {
   flex: 1;
 }
 
-.interests ul {
+.interests ul,
+.skills-section ul {
   list-style: none;
   font-size: 0.9rem;
   padding-left: 0;
 }
 
-.interest-item {
+.interest-item,
+.skill-item {
   margin-bottom: 15px;
 }
 
