@@ -28,7 +28,7 @@
     "title": "Timeboard",
     "date": "03/09/2025",
     "description": "A CRUD React App with a clear timeline/note system, image compressor and more!",
-    "image": "ASSETS/images/timeboard.webp",
+    "image": "ASSETS/images/Timeboard.webp",
     "skills": ["React", "TypeScript", "Tailwind"],
     "link": "https://lakbud.github.io/Timeboard/"
   },
