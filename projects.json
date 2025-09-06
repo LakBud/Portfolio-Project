@@ -28,8 +28,16 @@
     "title": "Timeboard",
     "date": "03/09/2025",
     "description": "A CRUD React App with a clear timeline/note system, image compressor and more!",
-    "image": "ASSETS/images/Timeboard.webp",
+    "image": "ASSETS/images/timeboard.webp",
     "skills": ["React", "TypeScript", "Tailwind"],
     "link": "https://lakbud.github.io/Timeboard/"
+  },
+  {
+    "title": "MoneyScope",
+    "date": "06/09/2025",
+    "description": "MoneyScope, a CRUD React App focused to be your personal tracking financer. It includes built-in graphs, clear UI/UX, mobile responsiveness and great design.",
+    "image": "ASSETS/images/moneyscope.webp",
+    "skills": ["React", "TypeScript", "Tailwind"],
+    "link": "https://moneyscope-ms.vercel.app/"
   }
 ]
