@@ -16,7 +16,7 @@ export async function initProjects() {
   // === PROJECT FETCH  ===
 
   try {
-    const res = await fetch("projects.json");
+    const res = await fetch("json/projects.json");
     if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
 
     const projects = await res.json();

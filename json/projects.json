@@ -39,5 +39,13 @@
     "image": "ASSETS/images/moneyscope.webp",
     "skills": ["React", "TypeScript", "Tailwind"],
     "link": "https://moneyscope-ms.vercel.app/"
+  },
+  {
+    "title": "Fitoras",
+    "date": "13/09/2025",
+    "description": "Professional Fitness Application with an Exercise Selection, Split Creator, Split Calendar & more.",
+    "image": "ASSETS/images/fitoras.webp",
+    "skills": ["React", "TypeScript", "Tailwind"],
+    "link": "https://fitoras.vercel.app"
   }
 ]
