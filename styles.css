@@ -294,6 +294,26 @@ section h2 {
   right: 10px;
 }
 
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skill-element {
+  flex: 1 1 100px;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  background-color: #a45616;
+  border-radius: 6px;
+  color: rgb(243, 243, 243);
+}
+
+.skill-element:hover {
+  transform: scale(1.02);
+  background-color: var(--highlight-color);
+}
+
 /* === 5. Goals + Projects Layout === */
 
 .goals-project-container {
