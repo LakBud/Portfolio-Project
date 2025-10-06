@@ -98,6 +98,18 @@ export function initScripts() {
     );
   }
 
+  // On form submit - save flag and force reload on return
+  if (form) {
+    form.addEventListener(
+      "submit",
+      () => {
+        localStorage.setItem("formSubmitted", "true");
+        // Form submits naturally and redirects
+      },
+      { passive: true }
+    );
+  }
+
   // On page load - check if they just submitted
   window.addEventListener("DOMContentLoaded", () => {
     if (localStorage.getItem("formSubmitted") === "true") {
@@ -123,6 +135,14 @@ export function initScripts() {
           "background:#4CAF50;color:white;padding:15px;text-align:center;font-weight:bold;margin:10px auto;max-width:600px;border-radius:8px;";
         form.insertAdjacentElement("beforebegin", banner);
       }
+    }
+  });
+
+  // Force reload when navigating back
+  window.addEventListener("pageshow", (event) => {
+    if (event.persisted) {
+      // Page was loaded from cache, force a real reload
+      window.location.reload();
     }
   });
 
