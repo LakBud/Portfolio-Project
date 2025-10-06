@@ -9,29 +9,16 @@ export function initScripts() {
   const volumeToggle = document.getElementById("volumeToggle");
   const volumeIcon = document.getElementById("volumeIcon");
 
+  // === CLEAR FORM ===
+  window.onbeforeunload = () => {
+    for (const form of document.getElementsByTagName("form")) {
+      form.reset();
+    }
+  };
+
   // === SORTABLE ===
   if (goalsList) {
     Sortable.create(goalsList, { animation: 150 });
-  }
-
-  // === CLEAR CONTENT ===
-  if (clearBtn) {
-    clearBtn.addEventListener(
-      "click",
-      () => {
-        const elementsToToggle = [
-          ...document.querySelectorAll("section"),
-          document.querySelector(".slider"),
-          document.querySelector("#creditsP"),
-        ].filter(Boolean);
-
-        window.requestAnimationFrame(() => {
-          elementsToToggle.forEach((el) => el.classList.toggle("section-hidden-opacity"));
-          clearBtn.textContent = clearBtn.textContent === "X" ? "O" : "X";
-        });
-      },
-      { passive: true }
-    );
   }
 
   // === SHUFFLE GOALS LIST ===
@@ -78,25 +65,45 @@ export function initScripts() {
   }
 
   // === FORM SCRIPTS ===
+  // On form submit - save a flag
   if (form) {
     form.addEventListener(
       "submit",
-      (e) => {
-        form.reset();
+      () => {
+        localStorage.setItem("formSubmitted", "true");
+        // Form submits naturally and redirects
+      },
+      { passive: true }
+    );
+  }
+
+  // On page load - check if they just submitted
+  window.addEventListener("DOMContentLoaded", () => {
+    if (localStorage.getItem("formSubmitted") === "true") {
+      // Clear the flag
+      localStorage.removeItem("formSubmitted");
+
+      // Show success message
+      const form = document.querySelector("form");
+      if (form) {
+        form.reset(); // Clear the form
 
         const nameInput = form.querySelector("input[name='name']");
         const emailInput = form.querySelector("input[name='email']");
         const messageInput = form.querySelector("textarea[name='message']");
 
-        if (nameInput) nameInput.placeholder = "You Submitted!";
-        if (emailInput) emailInput.placeholder = "If you did reCAPTCHA";
-        if (messageInput)
-          messageInput.placeholder =
-            "Then I will respond to your message as quick as I can! No need to send another email again.";
-      },
-      { passive: false }
-    );
-  }
+        if (nameInput) nameInput.placeholder = "Message Sent Successfully! ✓";
+        if (emailInput) emailInput.placeholder = "I'll respond quickly!";
+        if (messageInput) messageInput.placeholder = "Feel free to send another message anytime!";
+
+        const banner = document.createElement("div");
+        banner.textContent = "✓ Your message was sent successfully if you cleared the form!";
+        banner.style.cssText =
+          "background:#4CAF50;color:white;padding:15px;text-align:center;font-weight:bold;margin:10px auto;max-width:600px;border-radius:8px;";
+        form.insertAdjacentElement("beforebegin", banner);
+      }
+    }
+  });
 
   // === TOGGLE VOLUME ===
   if (volumeToggle && volumeIcon) {
