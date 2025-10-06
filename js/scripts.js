@@ -9,12 +9,25 @@ export function initScripts() {
   const volumeToggle = document.getElementById("volumeToggle");
   const volumeIcon = document.getElementById("volumeIcon");
 
-  // === CLEAR FORM ===
-  window.onbeforeunload = () => {
-    for (const form of document.getElementsByTagName("form")) {
-      form.reset();
-    }
-  };
+  // === CLEAR CONTENT ===
+  if (clearBtn) {
+    clearBtn.addEventListener(
+      "click",
+      () => {
+        const elementsToToggle = [
+          ...document.querySelectorAll("section"),
+          document.querySelector(".slider"),
+          document.querySelector("#creditsP"),
+        ].filter(Boolean);
+
+        window.requestAnimationFrame(() => {
+          elementsToToggle.forEach((el) => el.classList.toggle("section-hidden-opacity"));
+          clearBtn.textContent = clearBtn.textContent === "X" ? "O" : "X";
+        });
+      },
+      { passive: true }
+    );
+  }
 
   // === SORTABLE ===
   if (goalsList) {
@@ -65,6 +78,14 @@ export function initScripts() {
   }
 
   // === FORM SCRIPTS ===
+
+  // Clear Form
+  window.onbeforeunload = () => {
+    for (const form of document.getElementsByTagName("form")) {
+      form.reset();
+    }
+  };
+
   // On form submit - save a flag
   if (form) {
     form.addEventListener(
