@@ -21,7 +21,7 @@
     "date": "31/08/2025",
     "description": "E-commerce Filteration System with 100+ products, lists and filters.",
     "image": "ASSETS/images/shop.webp",
-    "skills": ["React", "TypeScript", "Tailwind", "SASS"],
+    "skills": ["React", "TypeScript", "Tailwind", "SASS", "JSON"],
     "link": "https://lakbud.github.io/React-Shop/"
   },
   {
@@ -43,9 +43,9 @@
   {
     "title": "Fitoras",
     "date": "13/09/2025",
-    "description": "Professional Fitness Application with an Exercise Selection, Split Creator, Split Calendar & more.",
+    "description": "Professional Fitness Application with an 800+ Exercise Selection, Split Creator, Split Calendar & more.",
     "image": "ASSETS/images/fitoras.webp",
-    "skills": ["React", "TypeScript", "Tailwind"],
+    "skills": ["React", "TypeScript", "Tailwind", "JSON"],
     "link": "https://fitoras.vercel.app"
   }
 ]
