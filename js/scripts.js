@@ -25,7 +25,7 @@ export function initScripts() {
           clearBtn.textContent = clearBtn.textContent === "X" ? "O" : "X";
         });
       },
-      { passive: true }
+      { passive: true },
     );
   }
 
@@ -61,19 +61,19 @@ export function initScripts() {
           });
         }
         const isDark = document.body.classList.toggle("dark-mode");
-        themeIcon.src = isDark ? "ASSETS/images/sun.webp" : "ASSETS/images/moon.webp";
+        themeIcon.src = isDark ? "ASSETS/images/ui/toggle/sun.webp" : "ASSETS/images/ui/toggle/moon.webp";
         localStorage.setItem("theme", isDark ? "dark" : "light");
         themeSound.play();
       },
-      { passive: true }
+      { passive: true },
     );
 
     // Restore saved theme on load
     if (localStorage.getItem("theme") === "dark") {
       document.body.classList.add("dark-mode");
-      themeIcon.src = "ASSETS/images/sun.webp";
+      themeIcon.src = "ASSETS/images/ui/toggle/sun.webp";
     } else {
-      themeIcon.src = "ASSETS/images/moon.webp";
+      themeIcon.src = "ASSETS/images/ui/toggle/moon.webp";
     }
   }
 
@@ -94,7 +94,7 @@ export function initScripts() {
         localStorage.setItem("formSubmitted", "true");
         // Form submits naturally and redirects
       },
-      { passive: true }
+      { passive: true },
     );
   }
 
@@ -106,7 +106,7 @@ export function initScripts() {
         localStorage.setItem("formSubmitted", "true");
         // Form submits naturally and redirects
       },
-      { passive: true }
+      { passive: true },
     );
   }
 
@@ -154,7 +154,7 @@ export function initScripts() {
     // Initialize Howler mute state immediately, but delay Howl creation
     Howler.mute(!soundOn);
 
-    volumeIcon.src = soundOn ? "ASSETS/images/volume.webp" : "ASSETS/images/volume-muted.webp";
+    volumeIcon.src = soundOn ? "ASSETS/images/ui/volume/volume.webp" : "ASSETS/images/ui/volume/volume-muted.webp";
     volumeIcon.alt = soundOn ? "Volume On" : "Volume Off";
 
     volumeToggle.addEventListener(
@@ -163,7 +163,7 @@ export function initScripts() {
         soundOn = !soundOn;
         Howler.mute(!soundOn);
 
-        volumeIcon.src = soundOn ? "ASSETS/images/volume.webp" : "ASSETS/images/volume-muted.webp";
+        volumeIcon.src = soundOn ? "ASSETS/images/ui/volume/volume.webp" : "ASSETS/images/ui/volume/volume-muted.webp";
         volumeIcon.alt = soundOn ? "Volume On" : "Volume Off";
 
         localStorage.setItem("soundOn", soundOn);
@@ -179,7 +179,7 @@ export function initScripts() {
           toggleClickSound.play();
         }
       },
-      { passive: true }
+      { passive: true },
     );
   }
 }

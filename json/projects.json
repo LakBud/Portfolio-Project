@@ -3,7 +3,7 @@
     "title": "Buddo's Portfolio",
     "date": "09/06/2025",
     "description": "The one you are looking at!",
-    "image": "ASSETS/images/website.webp",
+    "image": "ASSETS/images/website/website.webp",
     "skills": ["HTML", "CSS", "JavaScript", "JSON"],
     "link": "https://buddo.vercel.app/"
   },
@@ -12,7 +12,7 @@
     "title": "Minecraft Stack Calculator",
     "date": "17/08/2025",
     "description": "A Minecraft stack calculator that helps players calculate the number of stacks needed for various items in the game.",
-    "image": "ASSETS/images/minecraft.webp",
+    "image": "ASSETS/images/website/minecraft.webp",
     "skills": ["React", "JavaScript", "Tailwind", "SASS"],
     "link": "https://lakbud.github.io/MinecraftStackCalculator/"
   },
@@ -20,7 +20,7 @@
     "title": "React Shop",
     "date": "31/08/2025",
     "description": "E-commerce Filteration System with 100+ products, lists and filters.",
-    "image": "ASSETS/images/shop.webp",
+    "image": "ASSETS/images/website/shop.webp",
     "skills": ["React", "TypeScript", "Tailwind", "SASS", "JSON"],
     "link": "https://lakbud.github.io/React-Shop/"
   },
@@ -28,7 +28,7 @@
     "title": "Timeboard",
     "date": "03/09/2025",
     "description": "A CRUD React App with a clear timeline/note system, image compressor and more!",
-    "image": "ASSETS/images/Timeboard.webp",
+    "image": "ASSETS/images/website/Timeboard.webp",
     "skills": ["React", "TypeScript", "Tailwind"],
     "link": "https://lakbud.github.io/Timeboard/"
   },
@@ -36,7 +36,7 @@
     "title": "MoneyScope",
     "date": "06/09/2025",
     "description": "MoneyScope, a CRUD React App focused to be your personal tracking financer. It includes built-in graphs, clear UI/UX, mobile responsiveness and great design.",
-    "image": "ASSETS/images/moneyscope.webp",
+    "image": "ASSETS/images/website/moneyscope.webp",
     "skills": ["React", "TypeScript", "Tailwind"],
     "link": "https://moneyscope-ms.vercel.app/"
   },
@@ -44,8 +44,16 @@
     "title": "Fitoras",
     "date": "13/09/2025",
     "description": "Professional Fitness Application with an 800+ Exercise Selection, Split Creator, Split Calendar & more.",
-    "image": "ASSETS/images/fitoras.webp",
+    "image": "ASSETS/images/website/fitoras.webp",
     "skills": ["React", "TypeScript", "Tailwind", "JSON"],
     "link": "https://fitoras.vercel.app"
+  },
+  {
+    "title": "Applera",
+    "date": "09/05/2026",
+    "description": "AI-powered job application platform. Upload your CV, paste a job listing, and get a tailored cover letter, match score, and application email in seconds.",
+    "image": "ASSETS/images/website/applera.png",
+    "skills": ["React", "TypeScript", "Tailwind", "NodeJS", "ExpressJS", "MongoDB"],
+    "link": "https://applera.site"
   }
 ]

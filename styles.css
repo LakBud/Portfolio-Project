@@ -14,8 +14,12 @@ body {
   color: var(--text-color, #3b2e2a);
   line-height: 1.6;
   image-rendering: pixelated;
-  transition: background-color 0.5s ease, color 0.5s ease;
-  cursor: url("ASSETS/images/cursor.png") 4 4, auto;
+  transition:
+    background-color 0.5s ease,
+    color 0.5s ease;
+  cursor:
+    url("ASSETS/images/ui/cursor/cursor.png") 4 4,
+    auto;
 }
 
 main {
@@ -70,7 +74,9 @@ header.title {
 
 .logo:hover {
   transform: scale(1.2);
-  cursor: url("ASSETS/images/cursorhover.png") 4 4, auto;
+  cursor:
+    url("ASSETS/images/ui/cursor/cursorhover.png") 4 4,
+    auto;
 }
 
 header.title h1 {
@@ -123,7 +129,9 @@ section {
   border-radius: 5px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   image-rendering: pixelated;
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
   width: 100%;
   overflow-x: hidden;
   z-index: 50;
@@ -149,7 +157,9 @@ section:hover {
 .section-hidden {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
 }
 
 .section-visible {
@@ -160,7 +170,9 @@ section:hover {
 .section-child {
   opacity: 0;
   transform: scale(0.95);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
 }
 
 .section-child-visible {
@@ -218,7 +230,9 @@ section h2 {
   background: linear-gradient(90deg, #9f693f, #cdb088);
   width: 0;
   transition: width 2.5s ease;
-  cursor: url("ASSETS/images/cursordrag.png") 4 4, auto;
+  cursor:
+    url("ASSETS/images/ui/cursor/cursordrag.png") 4 4,
+    auto;
 
   color: #fff;
   font-size: 0.75rem;
@@ -237,7 +251,9 @@ section h2 {
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   margin: 20px 0;
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
   width: 100%;
   min-height: 250px;
   max-height: 420px;
@@ -281,7 +297,9 @@ section h2 {
   color: white;
   font-size: 1.2rem;
   padding: 10px 15px;
-  cursor: url("ASSETS/images/cursorhover.png") 4 4, auto;
+  cursor:
+    url("ASSETS/images/ui/cursor/cursorhover.png") 4 4,
+    auto;
   border-radius: 4px;
   font-family: "Press Start 2P", cursive;
   z-index: 10;
@@ -342,7 +360,9 @@ ol#goals-list {
 }
 
 ol#goals-list:hover {
-  cursor: url("ASSETS/images/cursordrag.png") 4 4, auto;
+  cursor:
+    url("ASSETS/images/ui/cursor/cursordrag.png") 4 4,
+    auto;
 }
 
 /* Buttons */
@@ -354,7 +374,9 @@ button {
   border: none;
   border-radius: 2px;
   font-size: 0.8rem;
-  cursor: url("ASSETS/images/cursorhover.png") 4 4, auto;
+  cursor:
+    url("ASSETS/images/ui/cursor/cursorhover.png") 4 4,
+    auto;
   transition: background 0.3s ease;
   font-family: "Press Start 2P", cursive;
   height: 35px;
@@ -388,7 +410,9 @@ a button {
 
 a:hover {
   text-decoration: underline;
-  cursor: url("ASSETS/images/cursorhover.png") 4 4, auto;
+  cursor:
+    url("ASSETS/images/ui/cursor/cursorhover.png") 4 4,
+    auto;
 }
 
 .contact p {
@@ -630,7 +654,9 @@ body.dark-mode {
 #toggleClearBtn {
   background: none;
   border: none;
-  cursor: url("ASSETS/images/cursorhover.png") 4 4, auto;
+  cursor:
+    url("ASSETS/images/ui/cursor/cursorhover.png") 4 4,
+    auto;
   position: fixed;
   padding: 0;
   transition: transform 0.3s ease;
@@ -724,7 +750,9 @@ body.dark-mode {
   flex-direction: column;
   justify-content: space-between;
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   border-radius: 0;
 }
 
