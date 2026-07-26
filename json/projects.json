@@ -43,7 +43,7 @@
    {
     "title": "VernLLM",
     "date": "19/07/2026",
-    "description": "A lightweight resilience layer for OpenAI-compatible chat completions: retries, timeouts, caching, and circuit breaking, dependency-light and typed from the start.",
+    "description": "A lightweight resilience layer for LLM chat completions: retries, timeouts, caching, and circuit breaking, dependency-light and typed from the start.",
     "image": "ASSETS/images/website/vernLLM.png",
     "skills": ["Next.js", "TypeScript", "OpenAI", "Caching", "Zod"],
     "link": "https://vernllm.vercel.app"
