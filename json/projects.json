@@ -3,7 +3,7 @@
     "title": "Buddo's Portfolio",
     "date": "09/06/2025",
     "description": "The one you are looking at!",
-    "image": "ASSETS/images/website/website.webp",
+    "image": "ASSETS/images/website/website.png",
     "skills": ["HTML", "CSS", "JavaScript", "JSON"],
     "link": "https://buddo.vercel.app/"
   },
@@ -23,14 +23,6 @@
     "image": "ASSETS/images/website/shop.webp",
     "skills": ["React", "TypeScript", "Tailwind", "SASS", "JSON"],
     "link": "https://lakbud.github.io/React-Shop/"
-  },
-  {
-    "title": "Timeboard",
-    "date": "03/09/2025",
-    "description": "A CRUD React App with a clear timeline/note system, image compressor and more!",
-    "image": "ASSETS/images/website/Timeboard.webp",
-    "skills": ["React", "TypeScript", "Tailwind"],
-    "link": "https://lakbud.github.io/Timeboard/"
   },
   {
     "title": "Fitoras",
