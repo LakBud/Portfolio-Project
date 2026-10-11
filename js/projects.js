@@ -1,6 +1,6 @@
 Howler.html5PoolSize = 10000;
 export async function initProjects() {
-  // === AUDIO SETUP  ===
+  // Audio setup
   const hoverSound = new Howl({
     src: ["ASSETS/sounds/hover.mp3"],
     volume: 0.3,
@@ -12,8 +12,6 @@ export async function initProjects() {
     volume: 0.6,
     html5: true,
   });
-
-  // === PROJECT FETCH  ===
 
   try {
     const res = await fetch("json/projects.json");
@@ -29,23 +27,19 @@ export async function initProjects() {
       const article = document.createElement("article");
       article.classList.add("project-container");
 
-      // IMAGE
       const img = document.createElement("img");
       img.src = project.image;
       img.alt = project.title;
       img.className = "project-img";
 
-      // TITLE
       const h3 = document.createElement("h3");
       h3.className = "project-h3";
       h3.textContent = project.title;
 
-      // DESCRIPTION
       const p = document.createElement("p");
       p.className = "project-p";
       p.textContent = project.description;
 
-      // SKILLS
       const skillsContainer = document.createElement("div");
       skillsContainer.className = "skills-container";
 
@@ -54,7 +48,6 @@ export async function initProjects() {
         skillEl.className = "skills";
         skillEl.textContent = skill;
 
-        // Add hover sound listener efficiently
         skillEl.addEventListener("mouseenter", () => {
           if (!hoverSound.playing()) hoverSound.play();
         });
@@ -62,12 +55,10 @@ export async function initProjects() {
         skillsContainer.appendChild(skillEl);
       });
 
-      // DATE
       const date = document.createElement("p");
       date.className = "project-date";
       date.textContent = project.date;
 
-      // LINK
       const link = document.createElement("a");
       link.href = project.link;
       link.target = "_blank";
@@ -82,12 +73,10 @@ export async function initProjects() {
         200
       );
 
-      // WRAP TEXTS
       const txtDiv = document.createElement("div");
       txtDiv.className = "project-txt";
       txtDiv.append(h3, p, skillsContainer, date, link);
 
-      // APPEND TO ARTICLE
       article.append(img, txtDiv);
       fragment.appendChild(article);
     });

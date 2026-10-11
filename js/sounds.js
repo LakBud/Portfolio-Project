@@ -1,7 +1,6 @@
 Howler.html5PoolSize = 500;
 
 export function initSounds() {
-  // === BACKGROUND AMBIENT ===
   const ambientHome = new Howl({
     src: ["./ASSETS/sounds/ambient1.mp3"],
     loop: true,
@@ -31,7 +30,7 @@ export function initSounds() {
     window.addEventListener("touchstart", startAmbient, { once: true, passive: true });
   }
 
-  // === SOUND EFFECTS ===
+  // Sound effects
   const hoverSound = new Howl({
     src: ["ASSETS/sounds/hover.mp3"],
     volume: 0.3,

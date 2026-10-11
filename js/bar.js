@@ -1,5 +1,4 @@
 export function initBar() {
-  // === DRAG BARS ===
   gsap.registerPlugin(ScrollTrigger);
 
   document.querySelectorAll([".interests ul", ".skills-section ul"]).forEach((list) => {
@@ -8,7 +7,7 @@ export function initBar() {
       let dragging = false;
       let animationRunning = false;
 
-      // DRAG LOGIC
+      // Drag logic
       function updateWidth(clientX) {
         const rect = bar.getBoundingClientRect();
         let percent = ((clientX - rect.left) / rect.width) * 100;
@@ -51,7 +50,7 @@ export function initBar() {
       window.addEventListener("mousemove", onMouseMove);
       progress.addEventListener("touchmove", onTouchMove, { passive: false });
 
-      // GSAP ANIMATION SETUP
+      // Animation setup
       const targetWidthStr = progress.style.getPropertyValue("--progress-width");
       const targetWidth = parseFloat(targetWidthStr) || 0;
       const numberObj = { val: 0 };

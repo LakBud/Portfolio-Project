@@ -9,7 +9,7 @@ export function initScripts() {
   const volumeToggle = document.getElementById("volumeToggle");
   const volumeIcon = document.getElementById("volumeIcon");
 
-  // === CLEAR CONTENT ===
+
   if (clearBtn) {
     clearBtn.addEventListener(
       "click",
@@ -29,12 +29,12 @@ export function initScripts() {
     );
   }
 
-  // === SORTABLE ===
+
   if (goalsList) {
     Sortable.create(goalsList, { animation: 150 });
   }
 
-  // === SHUFFLE GOALS LIST ===
+
   if (goalList) {
     window.shuffleGoals = () => {
       const items = Array.from(goalList.children);
@@ -46,7 +46,7 @@ export function initScripts() {
     };
   }
 
-  // === DARK/LIGHT TOGGLE ===
+
   if (toggleBtn && themeIcon) {
     let themeSound;
     // Delay creating Howl instance until first click to avoid preloading upfront
@@ -77,7 +77,7 @@ export function initScripts() {
     }
   }
 
-  // === FORM SCRIPTS ===
+
 
   // Clear Form
   window.onbeforeunload = () => {
@@ -86,7 +86,7 @@ export function initScripts() {
     }
   };
 
-  // On form submit - save a flag
+  // On form submit, save a flag
   if (form) {
     form.addEventListener(
       "submit",
@@ -98,7 +98,7 @@ export function initScripts() {
     );
   }
 
-  // On form submit - save flag and force reload on return
+  // On form submit, save flag and force reload on return
   if (form) {
     form.addEventListener(
       "submit",
@@ -110,7 +110,7 @@ export function initScripts() {
     );
   }
 
-  // On page load - check if they just submitted
+  // On page load, check if they just submitted
   window.addEventListener("DOMContentLoaded", () => {
     if (localStorage.getItem("formSubmitted") === "true") {
       // Clear the flag
@@ -146,7 +146,7 @@ export function initScripts() {
     }
   });
 
-  // === TOGGLE VOLUME ===
+
   if (volumeToggle && volumeIcon) {
     let toggleClickSound;
     let soundOn = localStorage.getItem("soundOn") !== null ? localStorage.getItem("soundOn") === "true" : true;

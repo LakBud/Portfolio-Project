@@ -1,6 +1,4 @@
 export function initAnimations() {
-  // === TEXT PARTICLES ===
-
   document.fonts.ready.then(() => {
     tsParticles.load("textParticles", {
       fullScreen: false,
@@ -31,7 +29,6 @@ export function initAnimations() {
     });
   });
 
-  // === ANIMATION for sections ===
   gsap.registerPlugin(ScrollTrigger);
 
   const sections = document.querySelectorAll("section");
@@ -47,7 +44,6 @@ export function initAnimations() {
       start: "25% bottom",
       once: true,
       onEnter: () => {
-        // Animate section in
         gsap.to(section, { autoAlpha: 1, duration: 0.4 });
 
         gsap.to(children, {
@@ -60,11 +56,10 @@ export function initAnimations() {
     });
   });
 
-  // === TYPEWRITER EFFECT ===
   const typedElement = document.getElementById("typed-subtitle");
   if (typedElement) {
     new Typed(typedElement, {
-      strings: ["18 Year Old Web Builder", "Aspiring Developer", "Frontend Programmer"],
+      strings: ["Software Engineer", "Infrastructure Engineer", "System Developer"],
       typeSpeed: 20,
       backSpeed: 30,
       backDelay: 1500,
@@ -75,7 +70,6 @@ export function initAnimations() {
   }
 }
 
-// === 3D RANDOM ANIMATION BACKGROUND (THREEJS) ===
 
 import * as THREE from "https://unpkg.com/three@0.160.0/build/three.module.js";
 
